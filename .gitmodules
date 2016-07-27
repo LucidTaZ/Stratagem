@@ -1,0 +1,3 @@
+[submodule "Assets/External"]
+	path = Assets/External
+	url = git@gitlab.com:lucidtaz/stratagem-external-assets.git
