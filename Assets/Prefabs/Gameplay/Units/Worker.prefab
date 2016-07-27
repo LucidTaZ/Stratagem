@@ -30,7 +30,6 @@ GameObject:
   - 114: {fileID: 11495810}
   - 114: {fileID: 11495308}
   - 114: {fileID: 11457010}
-  - 114: {fileID: 11461994}
   m_Layer: 0
   m_Name: Worker
   m_TagString: Untagged
@@ -107,17 +106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 973647b2058d21045a6ec7579ed0d74c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11461994
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 135726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73f03b4f6b1a21c479e41aecb2596c28, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11495308
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,8 +117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef3729304bf6cb64d9cd4dccf04748b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 10
   currentTarget: {fileID: 0}
+  Range: 10
 --- !u!114 &11495810
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -150,7 +138,7 @@ CapsuleCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 135726}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
@@ -182,7 +170,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 135726}
