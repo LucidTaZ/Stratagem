@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Lootable : MonoBehaviour {
+public class Lootable : MonoBehaviour, Spawnable {
 
 	private Spawner source;
 
@@ -9,14 +9,15 @@ public class Lootable : MonoBehaviour {
 	}
 
 	void OnTriggerEnter (Collider other) {
-		if (other.gameObject.CompareTag("Player")) {
-			PerformLoot();
+		Inventory inventory;
+		if ((inventory = other.gameObject.GetComponent<Inventory>()) != null) {
+			PerformLoot(inventory);
 		}
 	}
 
-	void PerformLoot () {
+	void PerformLoot (Inventory targetInventory) {
 		if (source != null) {
-			source.OnItemPickup(this);
+			source.OnSubjectDestroyed(gameObject);
 		}
 		Destroy(gameObject);
 	}

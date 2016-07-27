@@ -60,13 +60,13 @@ public class Spawner : MonoBehaviour {
 		GameObject item = Instantiate(Subject);
 		item.transform.parent = SpawnLocation;
 		item.transform.localPosition = Vector3.zero;
-		Lootable lootable = item.GetComponent<Lootable>();
-		if (lootable != null) {
-			lootable.SetSource(this);
+		Spawnable[] spawnables = item.GetComponents<Spawnable>();
+		foreach (Spawnable spawnable in spawnables) {
+			spawnable.SetSource(this);
 		}
 	}
 
-	public void OnItemPickup (Lootable item) {
+	public void OnSubjectDestroyed (GameObject subject) {
 		itemExists = false;
 	}
 

@@ -58,12 +58,12 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 440262}
-  - 135: {fileID: 13517490}
   - 114: {fileID: 11435550}
   - 54: {fileID: 5408086}
+  - 136: {fileID: 13650664}
   m_Layer: 8
   m_Name: Lootable Coin
-  m_TagString: Untagged
+  m_TagString: Resource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -229,18 +229,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b45635fbd9a91f439e47a99c562b542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!135 &13517490
-SphereCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 194308}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.38
-  m_Center: {x: 0, y: 1, z: 0}
 --- !u!135 &13541112
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -253,13 +241,30 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &13650664
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194308}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.38
+  m_Height: 1.38
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.68, z: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Resource
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 194308}
