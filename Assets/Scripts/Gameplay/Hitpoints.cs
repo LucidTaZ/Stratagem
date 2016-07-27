@@ -9,7 +9,7 @@ public class Hitpoints : MonoBehaviour {
 	void Start () {
 		current = Initial;
 	}
-	
+
 	public void Decrease (int delta) {
 		current -= delta;
 		if (current <= 0) {
