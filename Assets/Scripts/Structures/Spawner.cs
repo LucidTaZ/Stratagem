@@ -57,12 +57,17 @@ public class Spawner : MonoBehaviour {
 	}
 
 	void PerformSpawn () {
-		GameObject item = Instantiate(Subject);
-		item.transform.parent = SpawnLocation;
-		item.transform.localPosition = Vector3.zero;
-		Spawnable[] spawnables = item.GetComponents<Spawnable>();
+		GameObject subject = Instantiate(Subject);
+		subject.transform.parent = SpawnLocation;
+		subject.transform.localPosition = Vector3.zero;
+		Spawnable[] spawnables = subject.GetComponents<Spawnable>();
 		foreach (Spawnable spawnable in spawnables) {
 			spawnable.SetSource(this);
+		}
+		BelongsToTeam btt;
+		if ((btt = GetComponent<BelongsToTeam>()) != null) {
+			BelongsToTeam childBtt = subject.AddComponent<BelongsToTeam>();
+			childBtt.CopyFrom(btt);
 		}
 	}
 

@@ -15,7 +15,7 @@ GameObject:
   - 114: {fileID: 11464524}
   - 114: {fileID: 11476256}
   m_Layer: 0
-  m_Name: Capsule Enemy
+  m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,6 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe4910679cdb9e46af5534846961133, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentTarget: {fileID: 0}
 --- !u!114 &11464524
 MonoBehaviour:
   m_ObjectHideFlags: 1

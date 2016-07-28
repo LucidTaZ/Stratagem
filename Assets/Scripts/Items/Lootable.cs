@@ -10,12 +10,19 @@ public class Lootable : MonoBehaviour, Spawnable {
 
 	void OnTriggerEnter (Collider other) {
 		Inventory inventory;
-		if ((inventory = other.gameObject.GetComponent<Inventory>()) != null) {
-			PerformLoot(inventory);
+		if ((inventory = other.GetComponent<Inventory>()) != null) {
+			PerformLoot(inventory, other.gameObject);
 		}
 	}
 
-	void PerformLoot (Inventory targetInventory) {
+	void PerformLoot (Inventory inventory, GameObject other) {
+		BelongsToTeam btt = other.GetComponent<BelongsToTeam>();
+		if (btt != null) {
+			Debug.Log("TODO: Item looted for team " + btt.team.name);
+		}
+
+		Debug.Log("TODO: Item transfer to other inventory");
+
 		if (source != null) {
 			source.OnSubjectDestroyed(gameObject);
 		}

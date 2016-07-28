@@ -127,6 +127,44 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aa0548c21ce1b224f90f5f40385df388, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &89421577 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 101496, guid: db2e22e3163b5b94b88654788f4b3269, type: 2}
+  m_PrefabInternal: {fileID: 1923518609}
+--- !u!114 &89421578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 89421577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10acb7a60f3e514886d40f688d48d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    id: 1
+    name: TaZ
+    color: {r: 0.38235295, g: 0.5399596, b: 1, a: 0}
+--- !u!1 &98573555 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 101496, guid: db2e22e3163b5b94b88654788f4b3269, type: 2}
+  m_PrefabInternal: {fileID: 463579131}
+--- !u!114 &98573558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 98573555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10acb7a60f3e514886d40f688d48d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    id: 2
+    name: Martina
+    color: {r: 1, g: 0.3897059, b: 0.584, a: 0}
 --- !u!1001 &105603872
 Prefab:
   m_ObjectHideFlags: 0
@@ -492,6 +530,25 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 455664, guid: 71ee5bafccdbc84488c1dd652c80c4cc, type: 2}
   m_PrefabInternal: {fileID: 350755285}
+--- !u!1 &710243377 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 159960, guid: 5741eb816a7b2fa4180a016e410a4712, type: 2}
+  m_PrefabInternal: {fileID: 1077409306}
+--- !u!114 &710243380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 710243377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10acb7a60f3e514886d40f688d48d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    id: 1
+    name: TaZ
+    color: {r: 0.38039216, g: 0.5372549, b: 1, a: 0}
 --- !u!1001 &736540781
 Prefab:
   m_ObjectHideFlags: 0
@@ -533,6 +590,52 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0df1f090420551a4aba71ae4b38eeb74, type: 2}
+  m_IsPrefabParent: 0
+--- !u!1001 &818398548
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 414020, guid: 5f2c97bffe84a03449ac4bccf2c81b8e, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 4.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 414020, guid: 5f2c97bffe84a03449ac4bccf2c81b8e, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -4.510359e-17
+      objectReference: {fileID: 0}
+    - target: {fileID: 414020, guid: 5f2c97bffe84a03449ac4bccf2c81b8e, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 34.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 414020, guid: 5f2c97bffe84a03449ac4bccf2c81b8e, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 414020, guid: 5f2c97bffe84a03449ac4bccf2c81b8e, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 414020, guid: 5f2c97bffe84a03449ac4bccf2c81b8e, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 414020, guid: 5f2c97bffe84a03449ac4bccf2c81b8e, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 414020, guid: 5f2c97bffe84a03449ac4bccf2c81b8e, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 142376, guid: 5f2c97bffe84a03449ac4bccf2c81b8e, type: 2}
+      propertyPath: m_Name
+      value: Capsule Enemy Spawner (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 5f2c97bffe84a03449ac4bccf2c81b8e, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &820448383
 Prefab:
@@ -595,6 +698,7 @@ GameObject:
   - 114: {fileID: 1010325487}
   - 114: {fileID: 1010325486}
   - 114: {fileID: 1010325485}
+  - 114: {fileID: 1010325488}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -819,7 +923,7 @@ Transform:
   m_Children:
   - {fileID: 1493297124}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
 --- !u!114 &1010325485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -857,6 +961,21 @@ MonoBehaviour:
   Projectile: {fileID: 112718, guid: 19405c38a9c623d42bd465fef471ad9c, type: 2}
   Velocity: 25
   Cooldown: 0.1
+--- !u!114 &1010325488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1010325479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10acb7a60f3e514886d40f688d48d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    id: 1
+    name: TaZ
+    color: {r: 0.38039216, g: 0.5372549, b: 1, a: 0}
 --- !u!1 &1013471790
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,7 +1048,7 @@ Transform:
   - {fileID: 1270470204}
   - {fileID: 930029673}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
 --- !u!1001 &1077409306
 Prefab:
   m_ObjectHideFlags: 0
@@ -1157,6 +1276,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 274953379}
   m_RootOrder: 1
+--- !u!1 &1393187924 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 142376, guid: 5f2c97bffe84a03449ac4bccf2c81b8e, type: 2}
+  m_PrefabInternal: {fileID: 818398548}
+--- !u!114 &1393187925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1393187924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10acb7a60f3e514886d40f688d48d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    id: 1
+    name: TaZ
+    color: {r: 0.38039216, g: 0.5372549, b: 1, a: 0}
 --- !u!1001 &1394783845
 Prefab:
   m_ObjectHideFlags: 0
