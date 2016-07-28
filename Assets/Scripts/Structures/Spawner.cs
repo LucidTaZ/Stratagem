@@ -92,8 +92,11 @@ public class Spawner : MonoBehaviour {
 		{
 			Matrix4x4 meshrendererToWorld = spawnlocationToLocal * mr.transform.localToWorldMatrix;
 			Gizmos.matrix = meshrendererToWorld;
-			Mesh mesh = mr.GetComponent<MeshFilter>().sharedMesh;
-			Gizmos.DrawCube(mesh.bounds.center, mesh.bounds.size * 1.1f);
+			MeshFilter filter;
+			if ((filter = mr.GetComponent<MeshFilter>()) != null) {
+				Mesh mesh = filter.sharedMesh;
+				Gizmos.DrawCube(mesh.bounds.center, mesh.bounds.size * 1.1f);
+			}
 		}
 	}
 #endif
@@ -103,11 +106,14 @@ public class Spawner : MonoBehaviour {
 
 		foreach (Renderer mr in Subject.GetComponentsInChildren(typeof (Renderer), true))
 		{
-			Mesh mesh = mr.GetComponent<MeshFilter>().sharedMesh;
-			Matrix4x4 meshrendererToWorld = spawnlocationToLocal * mr.transform.localToWorldMatrix;
-			List<Material> materials = new List<Material> (mr.sharedMaterials);
-			for (int i = 0; i < materials.Count; i++) {
-				Graphics.DrawMesh (mesh, meshrendererToWorld, materials[i], gameObject.layer, null, i);
+			MeshFilter filter;
+			if ((filter = mr.GetComponent<MeshFilter>()) != null) {
+				Mesh mesh = filter.sharedMesh;
+				Matrix4x4 meshrendererToWorld = spawnlocationToLocal * mr.transform.localToWorldMatrix;
+				List<Material> materials = new List<Material> (mr.sharedMaterials);
+				for (int i = 0; i < materials.Count; i++) {
+					Graphics.DrawMesh (mesh, meshrendererToWorld, materials[i], gameObject.layer, null, i);
+				}
 			}
 		}
 	}

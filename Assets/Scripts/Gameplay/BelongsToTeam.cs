@@ -9,7 +9,9 @@ public class BelongsToTeam : MonoBehaviour {
 
 	void Start () {
 		foreach (MeshRenderer renderer in GetComponentsInChildren<MeshRenderer>()) {
-			renderer.material.color = team.color;
+			if (renderer.gameObject.GetComponent<TextMesh>() == null) { // Prevent coloring the text, somehow making it invisible
+				renderer.material.color = team.color;
+			}
 		}
 	}
 }

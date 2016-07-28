@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class AttackUnits : Unit {
+public class AttackUnits : CombatUnit {
 	public float Range = Mathf.Infinity;
 
 	protected override GameObject findNewTarget () {

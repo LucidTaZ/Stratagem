@@ -8,6 +8,8 @@ abstract public class Unit : MonoBehaviour, Spawnable {
 
 	protected bool currentlyTracking; // When false, found no resource, so head home
 
+	protected NavMeshAgent nav;
+
 	protected abstract GameObject findNewTarget();
 
 	public void SetSource (Spawner source) {
@@ -15,11 +17,12 @@ abstract public class Unit : MonoBehaviour, Spawnable {
 		basePosition = spawner.gameObject.transform.position;
 	}
 
-	void Start () {
+	protected virtual void Start () {
 		basePosition = transform.position;
+		nav = GetComponent<NavMeshAgent>();
 	}
 
-	void Update () {
+	protected virtual void Update () {
 		if (!currentlyTracking || currentTarget == null || currentTarget.Equals(null)) {
 			tryToFindNewTarget();
 		}
@@ -43,8 +46,8 @@ abstract public class Unit : MonoBehaviour, Spawnable {
 	}
 
 	void followCurrentTarget () {
-		if (currentTarget != null) {
-			GetComponent<NavMeshAgent>().SetDestination(currentTarget.transform.position);
+		if (currentTarget != null && nav != null) {
+			nav.SetDestination(currentTarget.transform.position);
 		}
 	}
 
