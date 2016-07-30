@@ -7,11 +7,16 @@ public class Shoot : MonoBehaviour {
 	public float Velocity = 50f;
 
 	public float Cooldown = 0.1f;
-	private float cooldownTimer = 0f;
+	float cooldownTimer = 0f;
 
-	// Update is called once per frame
+	bool isPlayer;
+
+	void Start () {
+		isPlayer = CompareTag("Player");
+	}
+
 	void Update () {
-		if (Input.GetButton("Shoot")) {
+		if (isPlayer && Input.GetButton("Shoot")) {
 			TryToShoot();
 		}
 	}
