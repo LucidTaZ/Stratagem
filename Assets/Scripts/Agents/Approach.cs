@@ -53,5 +53,6 @@ public class Approach : MonoBehaviour {
 
 	void headHome () {
 		nav.SetDestination(basePosition);
+		nav.Resume();
 	}
 }

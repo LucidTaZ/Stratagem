@@ -5,7 +5,18 @@ public class DealsDamage : MonoBehaviour {
 
 	public float SecondsBetweenTicks = 1.0f;
 
+	public bool FriendlyFire = false;
+
 	float cooldown = 0;
+
+	Team shotByTeam;
+
+	public void SetShooter (GameObject shooter) {
+		BelongsToTeam btt = shooter.GetComponent<BelongsToTeam>();
+		if (btt != null) {
+			shotByTeam = btt.team;
+		}
+	}
 
 	void Update () {
 		if (cooldown > 0) {
@@ -14,23 +25,24 @@ public class DealsDamage : MonoBehaviour {
 	}
 
 	void OnCollisionEnter (Collision collision) {
-		Hitpoints hitpoints;
-		if (hitpoints = collision.gameObject.GetComponent<Hitpoints>()) {
-			dealDamageByTickTime(hitpoints);
-		}
+		dealDamageIfApplicable(collision.gameObject);
 	}
 
 	void OnTriggerEnter (Collider other) {
-		Hitpoints hitpoints;
-		if (hitpoints = other.gameObject.GetComponent<Hitpoints>()) {
-			dealDamageByTickTime(hitpoints);
-		}
+		dealDamageIfApplicable(other.gameObject);
 	}
 
 	void OnTriggerStay (Collider other) {
+		dealDamageIfApplicable(other.gameObject);
+	}
+
+	void dealDamageIfApplicable (GameObject other) {
 		Hitpoints hitpoints;
-		if (hitpoints = other.gameObject.GetComponent<Hitpoints>()) {
-			dealDamageByTickTime(hitpoints);
+		if ((hitpoints = other.GetComponent<Hitpoints>()) != null) {
+			BelongsToTeam btt = other.GetComponent<BelongsToTeam>();
+			if (FriendlyFire || shotByTeam == null || btt == null || !shotByTeam.IsFriendsWith(btt.team)) {
+				dealDamageByTickTime(hitpoints);
+			}
 		}
 	}
 

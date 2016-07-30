@@ -48,5 +48,12 @@ public class Shoot : MonoBehaviour {
 		GameObject newProjectile = Instantiate(Projectile);
 		newProjectile.transform.position = transform.position + direction.normalized + transform.rotation * EjectionPoint;
 		newProjectile.GetComponent<Rigidbody>().AddForce(direction.normalized * Velocity, ForceMode.VelocityChange);
+
+		DealsDamage dealsDamage = newProjectile.GetComponent<DealsDamage>();
+		if (dealsDamage != null) {
+			dealsDamage.SetShooter(gameObject);
+		} else {
+			Debug.LogWarning("Firing a projectile that deals no damage");
+		}
 	}
 }
