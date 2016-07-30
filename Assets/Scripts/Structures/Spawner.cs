@@ -58,8 +58,8 @@ public class Spawner : MonoBehaviour {
 
 	void PerformSpawn () {
 		GameObject subject = Instantiate(Subject);
-		subject.transform.parent = SpawnLocation;
-		subject.transform.localPosition = Vector3.zero;
+		subject.transform.position = SpawnLocation.position;
+		subject.transform.rotation = SpawnLocation.rotation;
 		Spawnable[] spawnables = subject.GetComponents<Spawnable>();
 		foreach (Spawnable spawnable in spawnables) {
 			spawnable.SetSource(this);
