@@ -1637,6 +1637,52 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 414020, guid: 5f2c97bffe84a03449ac4bccf2c81b8e, type: 2}
   m_PrefabInternal: {fileID: 820448383}
+--- !u!1001 &1685043903
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2115463191}
+    m_Modifications:
+    - target: {fileID: 468988, guid: c4780737eac090948ae141d7df037787, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 468988, guid: c4780737eac090948ae141d7df037787, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 468988, guid: c4780737eac090948ae141d7df037787, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 12.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 468988, guid: c4780737eac090948ae141d7df037787, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 468988, guid: c4780737eac090948ae141d7df037787, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 468988, guid: c4780737eac090948ae141d7df037787, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 468988, guid: c4780737eac090948ae141d7df037787, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 468988, guid: c4780737eac090948ae141d7df037787, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 146870, guid: c4780737eac090948ae141d7df037787, type: 2}
+      propertyPath: m_Name
+      value: Sieger Spawner Blue
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: c4780737eac090948ae141d7df037787, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1711238113
 Prefab:
   m_ObjectHideFlags: 0
@@ -1703,6 +1749,29 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 474446, guid: 8fcb930abad8b9a44b17cec344f84d79, type: 2}
   m_PrefabInternal: {fileID: 2027946657}
+--- !u!1 &1854979483 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 146870, guid: c4780737eac090948ae141d7df037787, type: 2}
+  m_PrefabInternal: {fileID: 1685043903}
+--- !u!4 &1854979484 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 468988, guid: c4780737eac090948ae141d7df037787, type: 2}
+  m_PrefabInternal: {fileID: 1685043903}
+--- !u!114 &1854979485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1854979483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10acb7a60f3e514886d40f688d48d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    id: 1
+    name: TaZ
+    color: {r: 0.38039216, g: 0.5372549, b: 1, a: 0}
 --- !u!4 &1861291245 stripped
 Transform:
   m_PrefabParentObject: {fileID: 410086, guid: b6fa73396c9dfb747839f969309c3126, type: 2}
@@ -1835,6 +1904,7 @@ Transform:
   - {fileID: 98573557}
   - {fileID: 807772618}
   - {fileID: 710243379}
+  - {fileID: 1854979484}
   m_Father: {fileID: 0}
   m_RootOrder: 5
 --- !u!1001 &2124329537

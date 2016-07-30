@@ -46,7 +46,20 @@ abstract public class CombatUnit : Unit {
 	}
 
 	Vector3 aim () {
-		return ((currentTarget.transform.position - transform.position) + (Vector3.up * 0.5f)).normalized;
+		Collider targetCollider = currentTarget.GetComponent<Collider>();
+
+		// Adjust for the fact that the bullet leaves us not from our origin (Should get this from Shoot script?)
+		Vector3 nozzleLocalPosition = new Vector3(0f, 1f, 0f);
+		Vector3 nozzleWorldPosition = transform.TransformPoint(nozzleLocalPosition);
+
+		// Find the point we want to shoot
+		Vector3 closestPoint = targetCollider.ClosestPointOnBounds(nozzleWorldPosition);
+		Vector3 positionDifference = closestPoint - nozzleWorldPosition;
+
+		// Adjust for gravity of the bullet
+		Vector3 gravityAdjustment = (Vector3.up * 0.075f) * positionDifference.magnitude; // Empirically chosen
+
+		return (positionDifference + gravityAdjustment).normalized;
 	}
 
 	void tryToAttack (Vector3 direction) {

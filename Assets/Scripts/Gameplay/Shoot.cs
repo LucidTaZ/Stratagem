@@ -41,7 +41,7 @@ public class Shoot : MonoBehaviour {
 	void doShootAtDirection (Vector3 direction) {
 		GameObject newProjectile = Instantiate(Projectile);
 		Vector3 relativeSpawnOrigin = new Vector3(0f, 1f, 0f);
-		newProjectile.transform.position = transform.position + direction + transform.rotation * relativeSpawnOrigin;
+		newProjectile.transform.position = transform.position + direction.normalized + transform.rotation * relativeSpawnOrigin;
 		newProjectile.GetComponent<Rigidbody>().AddForce(direction.normalized * Velocity, ForceMode.VelocityChange);
 	}
 }
