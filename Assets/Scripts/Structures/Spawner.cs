@@ -60,8 +60,8 @@ public class Spawner : MonoBehaviour {
 		GameObject subject = Instantiate(Subject);
 		subject.transform.position = SpawnLocation.position;
 		subject.transform.rotation = SpawnLocation.rotation;
-		Spawnable[] spawnables = subject.GetComponents<Spawnable>();
-		foreach (Spawnable spawnable in spawnables) {
+		Spawnable spawnable = subject.GetComponent<Spawnable>();
+		if (spawnable != null) {
 			spawnable.SetSource(this);
 		}
 		BelongsToTeam btt;

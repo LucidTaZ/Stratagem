@@ -45,8 +45,11 @@ GameObject:
   - 195: {fileID: 19501736}
   - 136: {fileID: 13688216}
   - 114: {fileID: 11410742}
-  - 114: {fileID: 11467274}
   - 114: {fileID: 11477558}
+  - 114: {fileID: 11443334}
+  - 114: {fileID: 11434504}
+  - 114: {fileID: 11406218}
+  - 114: {fileID: 11407812}
   m_Layer: 0
   m_Name: Offender
   m_TagString: Attacker
@@ -172,6 +175,30 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
+--- !u!114 &11406218
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ed6dbaf0cf0f3147b5051671d95e823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ApproachDistanceMin: 5
+--- !u!114 &11407812
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d9ce68657c5f3d4a8d830886f4be09a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShootingRangeMax: 10
 --- !u!114 &11410742
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -183,8 +210,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1608d9cc523afa340aae81c5f769afe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Initial: 10
---- !u!114 &11467274
+  Initial: 8
+--- !u!114 &11434504
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -192,18 +219,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 162476}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc968626625b27e479d7de4ad384bfe0, type: 3}
+  m_Script: {fileID: 11500000, guid: 73f03b4f6b1a21c479e41aecb2596c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTarget: {fileID: 0}
-  ShootingRangeMax: 10
-  ApproachDistanceMin: 5
-  Range: 15
+--- !u!114 &11443334
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ca2811b1fbd3534f9f48a071f1b2015, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Range: 30
   Tags:
-  - Attacker
   - Player
   - Structure
+  - Attacker
   - Worker
+  CurrentTarget: {fileID: 0}
 --- !u!114 &11477558
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -216,6 +252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Projectile: {fileID: 112718, guid: 19405c38a9c623d42bd465fef471ad9c, type: 2}
+  EjectionPoint: {x: 0, y: 1, z: 0}
   Velocity: 25
   Cooldown: 0.5
 --- !u!136 &13688216
@@ -260,11 +297,27 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: Range
-      value: 15
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: Attacker
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ApproachDistanceMin
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ShootingRangeMax
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: EjectionPoint.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Initial
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
