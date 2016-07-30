@@ -5,8 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Resource
-  - Enemy
+  - Attacker
   - Structure
+  - Worker
   layers:
   - Default
   - TransparentFX

@@ -32,7 +32,7 @@ GameObject:
   - 114: {fileID: 11457010}
   m_Layer: 0
   m_Name: Worker
-  m_TagString: Untagged
+  m_TagString: Worker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -251,6 +251,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TagString
+      value: Worker
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
