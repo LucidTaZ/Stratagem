@@ -10,6 +10,10 @@ public class Item {
 		return GameObject.Instantiate(GroundItem);
 	}
 
+	virtual public bool CanUse (GameObject user) {
+		return false;
+	}
+
 	virtual public void Use (GameObject user) {
 		Debug.Log("Using item " + Name + " by user " + user.name);
 	}

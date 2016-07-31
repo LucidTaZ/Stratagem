@@ -57,9 +57,13 @@ public class InventoryUi : MonoBehaviour {
 	}
 
 	void onItemSelected (Item item) {
-		item.Use(gameObject);
-		inventory.Remove(item);
-		closeInventory();
+		if (item.CanUse(gameObject)) {
+			item.Use(gameObject);
+			inventory.Remove(item);
+			closeInventory();
+		} else {
+			Debug.Log("Selected item " + item.Name + " but cannot currently use.");
+		}
 	}
 
 	void Update () {
