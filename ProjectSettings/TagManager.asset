@@ -8,6 +8,7 @@ TagManager:
   - Attacker
   - Structure
   - Worker
+  - ItemFactory
   layers:
   - Default
   - TransparentFX

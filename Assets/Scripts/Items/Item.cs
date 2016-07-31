@@ -9,4 +9,8 @@ public class Item {
 	public GameObject InstantiateGroundItem () {
 		return GameObject.Instantiate(GroundItem);
 	}
+
+	virtual public void Use (GameObject user) {
+		Debug.Log("Using item " + Name + " by user " + user.name);
+	}
 }
