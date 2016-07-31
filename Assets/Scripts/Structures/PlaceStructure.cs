@@ -4,6 +4,7 @@ public class PlaceStructure : MonoBehaviour {
 	public GameObject Subject;
 
 	Material BlueprintMaterial;
+	AudioClip BuildSound;
 
 	BelongsToTeam btt;
 
@@ -16,6 +17,7 @@ public class PlaceStructure : MonoBehaviour {
 		Debug.Assert(Subject != null);
 
 		BlueprintMaterial = Resources.Load<Material>("BlueprintMaterial"); // So we don't have to assign it all the time upon instantiation, but can still leverage the editor to design the material
+		BuildSound = Resources.Load<AudioClip>("BuildSound");
 	}
 
 	void Update () {
@@ -57,6 +59,18 @@ public class PlaceStructure : MonoBehaviour {
 
 		BelongsToTeam childBtt = structure.AddComponent<BelongsToTeam>();
 		childBtt.CopyFrom(btt);
+
+		playSound();
+	}
+
+	void playSound () {
+		AudioSource audio = GetComponent<AudioSource>();
+		if (audio == null) {
+			Debug.LogWarning("No audio source found");
+		} else {
+			audio.clip = BuildSound;
+			audio.Play();
+		}
 	}
 
 	void renderBlueprint (Vector3 position, Quaternion rotation) {
