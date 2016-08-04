@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 public class StructureConsole : MonoBehaviour {
 	public Button ButtonPrefab;
@@ -43,16 +42,10 @@ public class StructureConsole : MonoBehaviour {
 
 	void Update () {
 		if (playerIsCloseEnough()) {
-			Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward); // TODO: Unify with other raycast
+			Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
 			Vector2 virtualScreenPosition;
 			if (castRay(ray, out virtualScreenPosition)) {
 				moveMouseCursor(virtualScreenPosition);
-				if (Input.GetButtonDown("Shoot")) {
-					Debug.Log("Click on " + virtualScreenPosition);
-					// TODO: Maybe find a way to fake an event through the official GUI event system? GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<EventSystem>()...
-					// Otherwise we will have to do some coordinate checking ourselves...
-					// ExecuteEvent.Execute(new Event(...)); ?
-				}
 				// TODO: Disable crosshair once it exists
 			} else {
 				// TODO: Enable crosshair
