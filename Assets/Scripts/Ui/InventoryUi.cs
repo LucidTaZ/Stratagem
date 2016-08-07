@@ -18,7 +18,7 @@ public class InventoryUi : MonoBehaviour {
 		Debug.Assert(ButtonPrefab != null);
 
 		playerState = GameObject.FindGameObjectWithTag("PlayerState").GetComponent<PlayerState>();
-		Debug.Log(playerState != null);
+		Debug.Assert(playerState != null);
 
 		uiContainer = Instantiate(UiContainerPrefab);
 		uiContainer.SetActive(false);
