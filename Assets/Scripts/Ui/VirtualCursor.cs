@@ -24,9 +24,7 @@ public class VirtualCursor : MonoBehaviour {
 		Vector2 localPosition;
 		if (castRay(out localPosition)) {
 			moveMouseCursor(localPosition);
-			playerState.IsInVirtualConsole = true;
-		} else {
-			playerState.IsInVirtualConsole = false;
+			playerState.IsInVirtualConsoleThisTick = true;
 		}
 	}
 

@@ -4,6 +4,7 @@ using UnityStandardAssets.Characters.FirstPerson;
 public class PlayerState : MonoBehaviour {
 	public bool IsInOverlayMenu;
 	public bool IsInVirtualConsole;
+	public bool IsInVirtualConsoleThisTick; // Flag to signal being in a virtual console, so this is a set-only property that reverts back if no one calls it (Reason to have it is to prevent conflicts with multiple consoles)
 
 	public bool IsInInventory {
 		get { return IsInOverlayMenu; }
@@ -39,6 +40,11 @@ public class PlayerState : MonoBehaviour {
 			// Cursor does not have to be locked, because the FirstPersonController does that
 			enablePlayerController();
 		}
+	}
+
+	void LateUpdate () {
+		IsInVirtualConsole = IsInVirtualConsoleThisTick;
+		IsInVirtualConsoleThisTick = false;
 	}
 
 	void freeCursor () {
