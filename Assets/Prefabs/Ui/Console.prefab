@@ -43,7 +43,6 @@ GameObject:
   - 224: {fileID: 22488564}
   - 223: {fileID: 22350068}
   - 114: {fileID: 11428914}
-  - 65: {fileID: 6529636}
   - 114: {fileID: 11484992}
   m_Layer: 12
   m_Name: Canvas
@@ -133,6 +132,7 @@ GameObject:
   - 114: {fileID: 11458994}
   - 114: {fileID: 11418112}
   - 114: {fileID: 11470306}
+  - 65: {fileID: 6529122}
   m_Layer: 0
   m_Name: Canvas for cursor
   m_TagString: Untagged
@@ -259,12 +259,12 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 101814}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &6529636
+--- !u!65 &6529122
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 108740}
+  m_GameObject: {fileID: 156474}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -366,6 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CursorObject: {fileID: 113212}
+  canvas: {fileID: 22399134}
 --- !u!114 &11458994
 MonoBehaviour:
   m_ObjectHideFlags: 1

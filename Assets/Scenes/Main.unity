@@ -248,6 +248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsInOverlayMenu: 0
   IsInVirtualConsole: 0
+  IsInVirtualConsoleThisTick: 0
 --- !u!4 &104682263
 Transform:
   m_ObjectHideFlags: 0
@@ -1000,7 +1001,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 408448, guid: 6274c18e7d443eb4d957ac6e784f7609, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -5.88
       objectReference: {fileID: 0}
     - target: {fileID: 408448, guid: 6274c18e7d443eb4d957ac6e784f7609, type: 2}
       propertyPath: m_LocalRotation.x
@@ -1020,7 +1021,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 408448, guid: 6274c18e7d443eb4d957ac6e784f7609, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6274c18e7d443eb4d957ac6e784f7609, type: 2}
@@ -1550,6 +1551,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22392492, guid: 6a2639af43ce5e24499f33e162597a12, type: 2}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 160396, guid: 6a2639af43ce5e24499f33e162597a12, type: 2}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

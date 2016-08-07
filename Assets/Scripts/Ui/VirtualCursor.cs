@@ -5,12 +5,11 @@ using UnityEngine.EventSystems;
 public class VirtualCursor : MonoBehaviour {
 	public GameObject CursorObject; // No prefab please
 
-	Canvas canvas;
+	public Canvas canvas;
 
 	PlayerState playerState;
 
 	void Start () {
-		canvas = GetComponentInChildren<Canvas>();
 		Debug.Assert(canvas != null);
 
 		if (canvas.GetComponent<BoxCollider>() == null) {
