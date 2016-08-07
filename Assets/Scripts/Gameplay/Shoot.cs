@@ -12,12 +12,18 @@ public class Shoot : MonoBehaviour {
 
 	bool isPlayer;
 
+	PlayerState playerState;
+
 	void Start () {
 		isPlayer = CompareTag("Player");
+		if (isPlayer) {
+			playerState = GameObject.FindGameObjectWithTag("PlayerState").GetComponent<PlayerState>();
+			Debug.Assert(playerState != null);
+		}
 	}
 
 	void Update () {
-		if (isPlayer && Input.GetButton("Shoot")) {
+		if (isPlayer && Input.GetButton("Shoot") && playerState.CanShoot) {
 			TryToShoot();
 		}
 	}

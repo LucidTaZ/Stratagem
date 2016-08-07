@@ -8,6 +8,8 @@ public class PlaceStructure : MonoBehaviour {
 
 	BelongsToTeam btt;
 
+	PlayerState playerState;
+
 	const float MAX_DISTANCE = 5f;
 	const float MIN_NORMAL_ALIGNMENT = 0.9f; // Minimum dot product of surface normal and "up"
 
@@ -16,6 +18,9 @@ public class PlaceStructure : MonoBehaviour {
 		Debug.Assert(btt != null);
 		Debug.Assert(Subject != null);
 
+		playerState = GameObject.FindGameObjectWithTag("PlayerState").GetComponent<PlayerState>();
+		Debug.Assert(playerState != null);
+
 		BlueprintMaterial = Resources.Load<Material>("BlueprintMaterial"); // So we don't have to assign it all the time upon instantiation, but can still leverage the editor to design the material
 		BuildSound = Resources.Load<AudioClip>("BuildSound");
 	}
@@ -23,7 +28,7 @@ public class PlaceStructure : MonoBehaviour {
 	void Update () {
 		Vector3 position;
 		Quaternion rotation;
-		if (canBuild(out position, out rotation)) {
+		if (playerState.CanPlaceStructures && canBuild(out position, out rotation)) {
 			if (Input.GetButton("Build")) {
 				buildStructure(position, rotation);
 				Destroy(this); // Destroy this script instance

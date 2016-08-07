@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using UnityStandardAssets.Characters.FirstPerson;
 
 public class InventoryUi : MonoBehaviour {
 	public GameObject UiContainerPrefab;
@@ -10,7 +9,7 @@ public class InventoryUi : MonoBehaviour {
 
 	GameObject uiContainer;
 
-	Behaviour[] componentsToSuspend;
+	PlayerState playerState;
 
 	void Start () {
 		inventory = GetComponent<Inventory>();
@@ -18,11 +17,13 @@ public class InventoryUi : MonoBehaviour {
 		Debug.Assert(UiContainerPrefab != null);
 		Debug.Assert(ButtonPrefab != null);
 
+		playerState = GameObject.FindGameObjectWithTag("PlayerState").GetComponent<PlayerState>();
+		Debug.Log(playerState != null);
+
 		uiContainer = Instantiate(UiContainerPrefab);
 		uiContainer.SetActive(false);
 
 		rebuildInventory();
-		registerComponentsToSuspend();
 	}
 
 	void rebuildInventory () {
@@ -48,14 +49,6 @@ public class InventoryUi : MonoBehaviour {
 		}
 	}
 
-	void registerComponentsToSuspend () {
-		componentsToSuspend = new Behaviour[]{
-			GetComponent<FirstPersonController>(),
-			GetComponent<Shoot>(),
-			GetComponent<PlaceStructure>(),
-		};
-	}
-
 	void onItemSelected (Item item) {
 		if (item.CanUse(gameObject)) {
 			item.Use(gameObject);
@@ -68,7 +61,6 @@ public class InventoryUi : MonoBehaviour {
 
 	void Update () {
 		if (Input.GetButtonDown("Inventory")) {
-			registerComponentsToSuspend(); // Since components may change dynamically, such as PlaceStructure
 			toggleInventory();
 		}
 	}
@@ -83,35 +75,12 @@ public class InventoryUi : MonoBehaviour {
 
 	void openInventory () {
 		rebuildInventory();
-		suspendComponents();
-		freeCursor();
+		playerState.IsInInventory = true;
 		uiContainer.SetActive(true);
 	}
 
 	void closeInventory () {
 		uiContainer.SetActive(false);
-		// Cursor does not have to be locked upon closing the inventory, because the FirstPersonController does that
-		freeComponents();
-	}
-
-	void freeCursor () {
-		Cursor.visible = true;
-		Cursor.lockState = CursorLockMode.None;
-	}
-
-	void suspendComponents () {
-		foreach (Behaviour component in componentsToSuspend) {
-			if (component != null) {
-				component.enabled = false;
-			}
-		}
-	}
-
-	void freeComponents () {
-		foreach (Behaviour component in componentsToSuspend) {
-			if (component != null) {
-				component.enabled = true;
-			}
-		}
+		playerState.IsInInventory = false;
 	}
 }

@@ -7,6 +7,8 @@ public class VirtualCursor : MonoBehaviour {
 
 	Canvas canvas;
 
+	PlayerState playerState;
+
 	void Start () {
 		canvas = GetComponentInChildren<Canvas>();
 		Debug.Assert(canvas != null);
@@ -14,15 +16,17 @@ public class VirtualCursor : MonoBehaviour {
 		if (canvas.GetComponent<BoxCollider>() == null) {
 			Debug.LogError("The canvas must have a BoxCollider to receive Physics Events");
 		}
+
+		playerState = GameObject.FindGameObjectWithTag("PlayerState").GetComponent<PlayerState>();
 	}
 
 	void Update () {
 		Vector2 localPosition;
 		if (castRay(out localPosition)) {
 			moveMouseCursor(localPosition);
-			// TODO: Disable crosshair once it exists
+			playerState.IsInVirtualConsole = true;
 		} else {
-			// TODO: Enable crosshair
+			playerState.IsInVirtualConsole = false;
 		}
 	}
 
