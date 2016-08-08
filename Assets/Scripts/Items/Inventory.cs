@@ -12,4 +12,34 @@ public class Inventory : MonoBehaviour {
 			Debug.LogError("Failed to remove item from inventory");
 		}
 	}
+
+	public Item Take (ItemIdentifier itemIdentifier) {
+		foreach (Item item in Contents.Items) {
+			if (item.Name == itemIdentifier.Name) {
+				Remove(item);
+				return item;
+			}
+		}
+		Debug.LogError("Tried to take item but it is not there");
+		return null;
+	}
+
+	public bool Contains (ItemIdentifier itemIdentifier) {
+		foreach (Item item in Contents.Items) {
+			if (item.Name == itemIdentifier.Name) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public int Count (ItemIdentifier itemIdentifier) {
+		int result = 0;
+		foreach (Item item in Contents.Items) {
+			if (item.Name == itemIdentifier.Name) {
+				result++;
+			}
+		}
+		return result;
+	}
 }

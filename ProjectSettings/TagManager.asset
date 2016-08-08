@@ -10,6 +10,7 @@ TagManager:
   - Worker
   - ItemFactory
   - PlayerState
+  - ResourceHolder
   layers:
   - Default
   - TransparentFX
