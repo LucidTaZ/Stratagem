@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class StructureConsole : MonoBehaviour {
+public class StructureDebugConsole : MonoBehaviour {
 	public Button ButtonPrefab;
 
 	public GameObject DebugStructureLoot;

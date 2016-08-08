@@ -13,6 +13,12 @@ public class Inventory : MonoBehaviour {
 		}
 	}
 
+	public void Remove (ItemIdentifier itemIdentifier, int count = 1) {
+		for (int i = 0; i < count; i++) {
+			Take(itemIdentifier);
+		}
+	}
+
 	public Item Take (ItemIdentifier itemIdentifier) {
 		foreach (Item item in Contents.Items) {
 			if (item.Name == itemIdentifier.Name) {

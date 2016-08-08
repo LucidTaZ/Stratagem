@@ -46,7 +46,7 @@ public class VirtualCursor : MonoBehaviour {
 	bool eventSystemHovered (out Vector2 screenPosition) {
 		List<RaycastResult> hits = new List<RaycastResult>();
 		PointerEventData pointer = new PointerEventData(EventSystem.current);
-		pointer.position = Camera.main.ViewportToScreenPoint(new Vector2(0.5f, 0.5f));
+		pointer.position = Input.mousePosition;
 		VirtualConsoleRaycaster raycaster = GetComponentInChildren<VirtualConsoleRaycaster>();
 
 		raycaster.Raycast(pointer, hits);

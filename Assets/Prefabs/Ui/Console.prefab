@@ -111,8 +111,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 432962}
-  - 114: {fileID: 11489490}
   - 114: {fileID: 11446404}
+  - 114: {fileID: 11435216}
   m_Layer: 0
   m_Name: Console
   m_TagString: Untagged
@@ -354,6 +354,35 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &11435216
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7bfddd1b068dc349a1f6485a6ddd9e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ButtonPrefab: {fileID: 11418228, guid: e2d9d7e497cbbb04d9158da347940686, type: 2}
+  canvas: {fileID: 22350068}
+  Assortment:
+  - Identifier:
+      Name: Worker Spawner
+    Cost: 10
+  - Identifier:
+      Name: Defender Spawner
+    Cost: 20
+  - Identifier:
+      Name: Offender Spawner
+    Cost: 30
+  - Identifier:
+      Name: Sieger Spawner
+    Cost: 40
+  - Identifier:
+      Name: Defense Tower
+    Cost: 100
 --- !u!114 &11446404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -422,19 +451,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4096
   MaxDistance: 1
---- !u!114 &11489490
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 155178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: decb7248fe17dc64cb6177b196f2dbef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ButtonPrefab: {fileID: 11418228, guid: e2d9d7e497cbbb04d9158da347940686, type: 2}
-  DebugStructureLoot: {fileID: 186840, guid: 24cb57b3ca0f54943a6f7293c5ee7d1c, type: 2}
 --- !u!114 &11499404
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -590,6 +606,10 @@ Prefab:
       propertyPath: DebugStructureLoot
       value: 
       objectReference: {fileID: 186840, guid: 24cb57b3ca0f54943a6f7293c5ee7d1c, type: 2}
+    - target: {fileID: 0}
+      propertyPath: Assortment.Array.data[0].Cost
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 155178}
