@@ -3,7 +3,8 @@
 public class Shoot : MonoBehaviour {
 
 	public GameObject Projectile;
-	public Vector3 EjectionPoint;
+	public Transform[] EjectionPoints;
+	int lastEjectionPoint;
 
 	public float Velocity = 50f;
 
@@ -20,6 +21,8 @@ public class Shoot : MonoBehaviour {
 			playerState = GameObject.FindGameObjectWithTag("PlayerState").GetComponent<PlayerState>();
 			Debug.Assert(playerState != null);
 		}
+
+		Debug.Assert(EjectionPoints.Length > 0);
 	}
 
 	void Update () {
@@ -33,6 +36,7 @@ public class Shoot : MonoBehaviour {
 		if (cooldownTimer < Time.time) {
 			doShoot();
 			cooldownTimer = Time.time + Cooldown;
+			setNextEjectionPoint();
 		}
 	}
 
@@ -41,6 +45,7 @@ public class Shoot : MonoBehaviour {
 		if (cooldownTimer < Time.time) {
 			doShootAtDirection(direction);
 			cooldownTimer = Time.time + Cooldown;
+			setNextEjectionPoint();
 		}
 	}
 
@@ -52,7 +57,8 @@ public class Shoot : MonoBehaviour {
 
 	void doShootAtDirection (Vector3 direction) {
 		GameObject newProjectile = Instantiate(Projectile);
-		newProjectile.transform.position = transform.position + direction.normalized + transform.rotation * EjectionPoint;
+		Vector3 ejectionPoint = GetCurrentEjectionPoint();
+		newProjectile.transform.position = ejectionPoint;
 		newProjectile.GetComponent<Rigidbody>().AddForce(direction.normalized * Velocity, ForceMode.VelocityChange);
 
 		DealsDamage dealsDamage = newProjectile.GetComponent<DealsDamage>();
@@ -61,5 +67,13 @@ public class Shoot : MonoBehaviour {
 		} else {
 			Debug.LogWarning("Firing a projectile that deals no damage");
 		}
+	}
+
+	public Vector3 GetCurrentEjectionPoint () {
+		return EjectionPoints[lastEjectionPoint].position;
+	}
+
+	void setNextEjectionPoint () {
+		lastEjectionPoint = (++lastEjectionPoint) % EjectionPoints.Length;
 	}
 }

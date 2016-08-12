@@ -7,8 +7,6 @@ public class Attack : MonoBehaviour {
 	FindTarget findTarget;
 	Shoot shoot;
 
-	Vector3 ejectionPoint;
-
 	void Start () {
 		shootingRangeMaxSq = ShootingRangeMax * ShootingRangeMax;
 
@@ -35,12 +33,11 @@ public class Attack : MonoBehaviour {
 		Collider targetCollider = findTarget.CurrentTarget.GetComponent<Collider>();
 
 		// Adjust for the fact that the bullet leaves us not from our origin (Should get this from Shoot script?)
-		Vector3 ejectionPoint = shoot.EjectionPoint;
-		Vector3 ejectionPointWorld = transform.TransformPoint(ejectionPoint);
+		Vector3 ejectionPoint = shoot.GetCurrentEjectionPoint();
 
 		// Find the point we want to shoot
-		Vector3 closestPoint = targetCollider.ClosestPointOnBounds(ejectionPointWorld);
-		Vector3 positionDifference = closestPoint - ejectionPointWorld;
+		Vector3 closestPoint = targetCollider.ClosestPointOnBounds(ejectionPoint);
+		Vector3 positionDifference = closestPoint - ejectionPoint;
 
 		// Adjust for gravity of the bullet
 		Vector3 gravityAdjustment = (Vector3.up * 1.875f / shoot.Velocity) * positionDifference.magnitude; // Empirically chosen
