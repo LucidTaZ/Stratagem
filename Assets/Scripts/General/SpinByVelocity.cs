@@ -2,16 +2,16 @@
 
 public class SpinByVelocity : MonoBehaviour {
 	public Vector3 Axis = Vector3.right;
-	public float Rate = 3600;
+	public float Rate = 90; // (degrees/s) / (m/s) = degrees / m
 
-	float angle;
 	Vector3 previousPosition;
 
 	void Update () {
-		float velocity = (transform.position - previousPosition).magnitude;
-		float dangle = (velocity * Rate * Time.deltaTime) % 360;
-		angle = (angle + dangle) % 360;
-		transform.Rotate(Axis, dangle);
+		//float ds = (transform.position - previousPosition).magnitude; // Counts any direction, always spins wheels forwards
+		float ds = Vector3.Cross(transform.position - previousPosition, Axis).magnitude; // Counts forward & back direction, and should spin wheels backwards when driving backwards
 		previousPosition = transform.position;
+		float v = ds / Time.deltaTime;
+		float omega = (v * Rate);
+		transform.Rotate(Axis, omega * Time.deltaTime);
 	}
 }
