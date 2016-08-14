@@ -1,29 +1,25 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class StructurePurchaseConsole : MonoBehaviour {
+public class StructurePurchaseConsole : NetworkBehaviour {
 	public Button ButtonPrefab;
 
 	public Canvas canvas;
 
-	public PurchaseableItem[] Assortment;
-
-	Inventory teamInventory;
+	public PurchaseHandler Handler;
 
 	void Start () {
 		Debug.Assert(ButtonPrefab != null);
 		Debug.Assert(canvas != null);
-		Debug.Assert(Assortment != null);
-
-		teamInventory = GameObject.FindGameObjectWithTag("ResourceHolder").GetComponent<Inventory>();
-		Debug.Assert(teamInventory != null);
+		Debug.Assert(Handler != null);
 
 		buildContents();
 	}
 
 	void buildContents () {
 		int i = 0;
-		foreach (PurchaseableItem purchaseableItem in Assortment) {
+		foreach (PurchaseableItem purchaseableItem in Handler.Assortment) {
 			string caption = string.Format("{0}: {1}z", purchaseableItem.Identifier.Name, purchaseableItem.Cost);
 			buildButton(caption, purchaseableItem, i);
 			i++;
@@ -43,30 +39,9 @@ public class StructurePurchaseConsole : MonoBehaviour {
 			button.transform.localPosition.z
 		);
 
-		button.onClick.AddListener(() => OnPurchaseButtonClicked(purchaseableItem));
+		button.onClick.AddListener(() => Handler.Purchase(purchaseableItem));
 
 		Text label = button.GetComponentInChildren<Text>();
 		label.text = caption;
-	}
-
-	void OnPurchaseButtonClicked (PurchaseableItem purchaseableItem) {
-		ItemIdentifier zeny = new ItemIdentifier("Zeny"); // TODO: Make settable via PurchasableItem
-
-		if (teamInventory.Count(zeny) >= purchaseableItem.Cost) {
-			teamInventory.Remove(zeny, purchaseableItem.Cost);
-			buyItem(purchaseableItem);
-		}
-	}
-
-	void buyItem (PurchaseableItem purchaseableItem) {
-		PurchaseDropZone dropZone = GetComponentInParent<PurchaseDropZone>();
-		if (dropZone == null) {
-			Debug.LogError("Please make sure that the structure GameObject has a PurchaseDropZone component.");
-		}
-		Vector3 dropLocation = dropZone.SampleWorldLocation();
-		dropLocation.y = 10f; // TODO: Make dependent on the "build time"
-
-		GameObject loot = ItemFactory.Instance().CreateLootable(purchaseableItem.Identifier);
-		loot.transform.position = dropLocation;
 	}
 }

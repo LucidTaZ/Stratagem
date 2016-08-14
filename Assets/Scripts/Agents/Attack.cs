@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class Attack : MonoBehaviour {
+public class Attack : NetworkBehaviour {
 	public float ShootingRangeMax = Mathf.Infinity;
 	float shootingRangeMaxSq;
 
@@ -18,6 +19,9 @@ public class Attack : MonoBehaviour {
 	}
 
 	void Update () {
+		if (!hasAuthority) {
+			return;
+		}
 		if (findTarget.CurrentTarget != null) {
 			bool closeEnough = (findTarget.CurrentTarget.transform.position - transform.position).sqrMagnitude < shootingRangeMaxSq;
 			if (closeEnough) {

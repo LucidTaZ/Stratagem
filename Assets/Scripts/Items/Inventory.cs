@@ -1,7 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class Inventory : MonoBehaviour {
+public class Inventory : NetworkBehaviour {
 	public ItemCollection Contents = new ItemCollection();
+
+	[ClientRpc]
+	public void RpcAdd (Item item) {
+		Add(item);
+	}
 
 	public void Add (Item item) {
 		Contents.Items.Add(item);

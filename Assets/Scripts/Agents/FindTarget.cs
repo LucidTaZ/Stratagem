@@ -19,7 +19,7 @@ public class FindTarget : MonoBehaviour {
 	}
 
 	void Update () {
-		if (CurrentTarget == null || CurrentTarget.Equals(null)) {
+		if (CurrentTarget == null || CurrentTarget.Equals(null) || !CurrentTarget.activeInHierarchy) {
 			CurrentTarget = findNewTarget();
 		}
 	}

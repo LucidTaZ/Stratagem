@@ -1,8 +1,5 @@
 ﻿using UnityEngine;
-
-// This script must be placed before the FirstPersonController!
 using System.Collections;
-
 
 public class CameraBehavior : MonoBehaviour {
 	public float ResetTime = 1f;

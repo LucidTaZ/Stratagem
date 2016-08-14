@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlaceStructure : MonoBehaviour {
+public class PlaceStructure : NetworkBehaviour {
 	public GameObject Subject;
 
 	Material BlueprintMaterial;
@@ -9,6 +10,7 @@ public class PlaceStructure : MonoBehaviour {
 	BelongsToTeam btt;
 
 	PlayerState playerState;
+	bool isActuallyLocalPlayer;
 
 	const float MAX_DISTANCE = 5f;
 	const float MIN_NORMAL_ALIGNMENT = 0.9f; // Minimum dot product of surface normal and "up"
@@ -28,7 +30,7 @@ public class PlaceStructure : MonoBehaviour {
 	void Update () {
 		Vector3 position;
 		Quaternion rotation;
-		if (playerState.CanPlaceStructures && canBuild(out position, out rotation)) {
+		if (hasAuthority && playerState.CanPlaceStructures && canBuild(out position, out rotation)) {
 			if (Input.GetButton("Build")) {
 				buildStructure(position, rotation);
 				Destroy(this); // Destroy this script instance
@@ -61,6 +63,7 @@ public class PlaceStructure : MonoBehaviour {
 		GameObject structure = Instantiate(Subject);
 		structure.transform.position = position;
 		structure.transform.rotation = rotation;
+		NetworkServer.Spawn(structure);
 
 		BelongsToTeam childBtt = structure.AddComponent<BelongsToTeam>();
 		childBtt.CopyFrom(btt);

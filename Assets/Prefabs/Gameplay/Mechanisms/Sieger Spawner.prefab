@@ -44,6 +44,7 @@ GameObject:
   - 114: {fileID: 11452552}
   - 65: {fileID: 6502242}
   - 114: {fileID: 11409108}
+  - 114: {fileID: 11406460}
   m_Layer: 0
   m_Name: Sieger Spawner
   m_TagString: Structure
@@ -146,6 +147,38 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &11406460
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 146870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 196
+    i1: 120
+    i2: 7
+    i3: 55
+    i4: 234
+    i5: 192
+    i6: 144
+    i7: 148
+    i8: 138
+    i9: 225
+    i10: 65
+    i11: 215
+    i12: 223
+    i13: 3
+    i14: 119
+    i15: 135
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &11409108
 MonoBehaviour:
   m_ObjectHideFlags: 1

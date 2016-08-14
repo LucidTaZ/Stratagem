@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class Lootable : MonoBehaviour {
+public class Lootable : NetworkBehaviour {
 	public ItemIdentifier ItemToLoot;
 
 	void Start () {
@@ -8,6 +9,9 @@ public class Lootable : MonoBehaviour {
 	}
 
 	void OnTriggerEnter (Collider other) {
+		if (!hasAuthority) {
+			return;
+		}
 		Inventory inventory;
 		if ((inventory = other.GetComponent<Inventory>()) != null) {
 			PerformLoot(inventory, other.gameObject);
@@ -16,8 +20,8 @@ public class Lootable : MonoBehaviour {
 
 	void PerformLoot (Inventory inventory, GameObject other) {
 		Item item = ItemFactory.Instance().Create(ItemToLoot);
-		inventory.Add(item);
+		inventory.RpcAdd(item);
 
-		Destroy(gameObject);
+		NetworkServer.Destroy(gameObject);
 	}
 }

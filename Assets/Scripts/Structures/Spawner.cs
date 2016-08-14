@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.Networking;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -7,7 +9,7 @@ using UnityEditor;
 // When adding networking, see https://docs.unity3d.com/Manual/UNetSpawning.html
 
 [ExecuteInEditMode]
-public class Spawner : MonoBehaviour {
+public class Spawner : NetworkBehaviour {
 
 	public GameObject Subject;
 	public Transform SpawnLocation;
@@ -41,6 +43,9 @@ public class Spawner : MonoBehaviour {
 	}
 
 	void gameModeUpdate () {
+		if (!hasAuthority) {
+			return;
+		}
 		if (!AllowMultipleItems && itemExists) {
 			return;
 		}
@@ -60,14 +65,22 @@ public class Spawner : MonoBehaviour {
 		GameObject subject = Instantiate(Subject);
 		subject.transform.position = SpawnLocation.position;
 		subject.transform.rotation = SpawnLocation.rotation;
+
 		Spawnable spawnable = subject.GetComponent<Spawnable>();
 		if (spawnable != null) {
 			spawnable.SetSource(this);
 		}
-		BelongsToTeam btt;
-		if ((btt = GetComponent<BelongsToTeam>()) != null) {
-			BelongsToTeam childBtt = subject.AddComponent<BelongsToTeam>();
+		BelongsToTeam btt = GetComponent<BelongsToTeam>();
+		BelongsToTeam childBtt = subject.GetComponent<BelongsToTeam>();
+		if (btt != null && childBtt != null) {
 			childBtt.CopyFrom(btt);
+		}
+
+		if (subject.CompareTag("Player")) {
+			// Special case: the "network player" is the Heart, the "player object" is spawned by it
+			NetworkServer.SpawnWithClientAuthority(subject, gameObject);
+		} else {
+			NetworkServer.Spawn(subject);
 		}
 	}
 

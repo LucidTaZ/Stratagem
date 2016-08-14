@@ -11,6 +11,7 @@ GameObject:
   - 114: {fileID: 11462294}
   - 65: {fileID: 6517262}
   - 114: {fileID: 11459012}
+  - 114: {fileID: 11463668}
   m_Layer: 0
   m_Name: Defender Spawner
   m_TagString: Structure
@@ -174,6 +175,38 @@ MonoBehaviour:
   CooldownSeconds: 10
   SpawnImmediately: 1
   AllowMultipleItems: 0
+--- !u!114 &11463668
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 101496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 219
+    i1: 46
+    i2: 34
+    i3: 227
+    i4: 22
+    i5: 59
+    i6: 91
+    i7: 148
+    i8: 184
+    i9: 134
+    i10: 84
+    i11: 120
+    i12: 143
+    i13: 75
+    i14: 50
+    i15: 105
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

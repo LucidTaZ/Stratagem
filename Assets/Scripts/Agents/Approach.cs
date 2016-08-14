@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class Approach : MonoBehaviour {
+public class Approach : NetworkBehaviour {
 	public float ApproachDistanceMin = 0;
 	float approachDistanceMinSq;
 
@@ -23,6 +24,9 @@ public class Approach : MonoBehaviour {
 	}
 
 	void Update () {
+		if (!hasAuthority) {
+			return;
+		}
 		if (findTarget.CurrentTarget == null) {
 			headHome();
 		} else {
