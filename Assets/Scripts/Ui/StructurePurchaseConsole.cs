@@ -50,16 +50,23 @@ public class StructurePurchaseConsole : MonoBehaviour {
 	}
 
 	void OnPurchaseButtonClicked (PurchaseableItem purchaseableItem) {
-		GameObject player = GameObject.FindGameObjectWithTag("Player");
-		Debug.Assert(player != null);
-		Inventory inventory = player.GetComponent<Inventory>();
-
 		ItemIdentifier zeny = new ItemIdentifier("Zeny"); // TODO: Make settable via PurchasableItem
 
 		if (teamInventory.Count(zeny) >= purchaseableItem.Cost) {
 			teamInventory.Remove(zeny, purchaseableItem.Cost);
-			Item item = ItemFactory.Instance().Create(purchaseableItem.Identifier);
-			inventory.Add(item);
+			buyItem(purchaseableItem);
 		}
+	}
+
+	void buyItem (PurchaseableItem purchaseableItem) {
+		PurchaseDropZone dropZone = GetComponentInParent<PurchaseDropZone>();
+		if (dropZone == null) {
+			Debug.LogError("Please make sure that the structure GameObject has a PurchaseDropZone component.");
+		}
+		Vector3 dropLocation = dropZone.SampleWorldLocation();
+		dropLocation.y = 10f; // TODO: Make dependent on the "build time"
+
+		GameObject loot = ItemFactory.Instance().CreateLootable(purchaseableItem.Identifier);
+		loot.transform.position = dropLocation;
 	}
 }

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
 
 public class ItemFactory : MonoBehaviour {
 	public GameObject WorkerSpawner;
@@ -8,7 +7,7 @@ public class ItemFactory : MonoBehaviour {
 	public GameObject SiegerSpawner;
 	public GameObject DefenseTower;
 
-	Dictionary<ItemIdentifier, int> costs = new Dictionary<ItemIdentifier, int>();
+	public GameObject LootTemplate;
 
 	public static ItemFactory Instance () {
 		GameObject itemFactoryHolder = GameObject.FindGameObjectWithTag("ItemFactory");
@@ -16,14 +15,6 @@ public class ItemFactory : MonoBehaviour {
 		ItemFactory itemFactory = itemFactoryHolder.GetComponent<ItemFactory>();
 		Debug.Assert(itemFactory != null);
 		return itemFactory;
-	}
-
-	void Start () {
-		costs.Add(new ItemIdentifier("Worker Spawner"), 10);
-		costs.Add(new ItemIdentifier("Defender Spawner"), 20);
-		costs.Add(new ItemIdentifier("Offender Spawner"), 30);
-		costs.Add(new ItemIdentifier("Sieger Spawner"), 40);
-		costs.Add(new ItemIdentifier("Defense Tower"), 100);
 	}
 
 	public Item Create (ItemIdentifier itemId) {
@@ -62,5 +53,13 @@ public class ItemFactory : MonoBehaviour {
 			Debug.LogWarning("Unknown item ID: " + itemId.Name);
 			return item;
 		}
+	}
+
+	public GameObject CreateLootable (ItemIdentifier itemId) {
+		GameObject result = Instantiate(LootTemplate);
+		Lootable lootable = result.GetComponent<Lootable>();
+		lootable.ItemToLoot = itemId;
+		// Note: We could set a mesh here if we want
+		return result;
 	}
 }
