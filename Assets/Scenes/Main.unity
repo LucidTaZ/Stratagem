@@ -304,7 +304,8 @@ Prefab:
       propertyPath: m_Name
       value: Defense Tower Blue
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11470872, guid: 31cd7497ebd345445ba60aed71c49761, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 31cd7497ebd345445ba60aed71c49761, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &157079111
@@ -446,7 +447,8 @@ Prefab:
       propertyPath: m_Name
       value: Defender Spawner Green
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11417466, guid: db2e22e3163b5b94b88654788f4b3269, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: db2e22e3163b5b94b88654788f4b3269, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &264561141
@@ -641,7 +643,8 @@ Prefab:
       propertyPath: m_Name
       value: Defender Spawner Green
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11417466, guid: db2e22e3163b5b94b88654788f4b3269, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: db2e22e3163b5b94b88654788f4b3269, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &414423793
@@ -687,7 +690,8 @@ Prefab:
       propertyPath: m_Name
       value: Offender Spawner Green
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11453636, guid: 33327d0c48b42a14096e916f5f6a50f8, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 33327d0c48b42a14096e916f5f6a50f8, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &415433667
@@ -766,7 +770,8 @@ Prefab:
       propertyPath: m_Name
       value: Defender Spawner Red
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11417466, guid: db2e22e3163b5b94b88654788f4b3269, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: db2e22e3163b5b94b88654788f4b3269, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &474545922
@@ -812,7 +817,8 @@ Prefab:
       propertyPath: m_Name
       value: Defender Spawner Green
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11417466, guid: db2e22e3163b5b94b88654788f4b3269, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: db2e22e3163b5b94b88654788f4b3269, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &540264862
@@ -1039,7 +1045,8 @@ Prefab:
       propertyPath: m_Name
       value: Offender Spawner Red
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11453636, guid: 33327d0c48b42a14096e916f5f6a50f8, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 33327d0c48b42a14096e916f5f6a50f8, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &600340610
@@ -1085,7 +1092,8 @@ Prefab:
       propertyPath: m_Name
       value: Worker Spawner Red
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11414792, guid: 5741eb816a7b2fa4180a016e410a4712, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 5741eb816a7b2fa4180a016e410a4712, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &691427662 stripped
@@ -1206,7 +1214,7 @@ Prefab:
 --- !u!1 &830830144
 GameObject:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 169204, guid: 5106b78189c09944ea276cc695ce8d02, type: 2}
   m_PrefabInternal: {fileID: 0}
   serializedVersion: 4
   m_Component:
@@ -1222,7 +1230,7 @@ GameObject:
 --- !u!4 &830830145
 Transform:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 453912, guid: 5106b78189c09944ea276cc695ce8d02, type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 830830144}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -1234,7 +1242,8 @@ Transform:
 --- !u!114 &830830146
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 11432468, guid: 5106b78189c09944ea276cc695ce8d02,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 830830144}
   m_Enabled: 1
@@ -1430,7 +1439,8 @@ Prefab:
       propertyPath: m_Name
       value: Worker Spawner Blue
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11414792, guid: 5741eb816a7b2fa4180a016e410a4712, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 5741eb816a7b2fa4180a016e410a4712, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1124074756
@@ -2059,7 +2069,8 @@ Prefab:
       propertyPath: m_Name
       value: Sieger Spawner Blue
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11475332, guid: c4780737eac090948ae141d7df037787, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c4780737eac090948ae141d7df037787, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1711238113
@@ -2427,7 +2438,8 @@ Prefab:
       propertyPath: m_Name
       value: Defense Tower Green
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11470872, guid: 31cd7497ebd345445ba60aed71c49761, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 31cd7497ebd345445ba60aed71c49761, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1759767579 stripped
@@ -2588,7 +2600,8 @@ Prefab:
       propertyPath: m_Name
       value: Defender Spawner Blue
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11417466, guid: db2e22e3163b5b94b88654788f4b3269, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: db2e22e3163b5b94b88654788f4b3269, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &1940846692 stripped
