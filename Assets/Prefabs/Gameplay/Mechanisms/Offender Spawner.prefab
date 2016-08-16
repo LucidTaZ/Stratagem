@@ -45,6 +45,7 @@ GameObject:
   - 65: {fileID: 6596638}
   - 114: {fileID: 11492492}
   - 114: {fileID: 11470712}
+  - 114: {fileID: 11453636}
   m_Layer: 0
   m_Name: Offender Spawner
   m_TagString: Structure
@@ -163,6 +164,21 @@ MonoBehaviour:
   CooldownSeconds: 10
   SpawnImmediately: 1
   AllowMultipleItems: 0
+--- !u!114 &11453636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10acb7a60f3e514886d40f688d48d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    id: 0
+    name: 
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &11470712
 MonoBehaviour:
   m_ObjectHideFlags: 1

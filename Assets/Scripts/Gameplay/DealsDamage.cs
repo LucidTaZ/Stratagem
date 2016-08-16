@@ -40,7 +40,7 @@ public class DealsDamage : MonoBehaviour {
 		Hitpoints hitpoints;
 		if ((hitpoints = other.GetComponent<Hitpoints>()) != null) {
 			BelongsToTeam btt = other.GetComponent<BelongsToTeam>();
-			if (FriendlyFire || shotByTeam == null || btt == null || !shotByTeam.IsFriendsWith(btt.team)) {
+			if (FriendlyFire || btt == null || !shotByTeam.IsFriendsWith(btt.team)) {
 				dealDamageByTickTime(hitpoints);
 			}
 		}

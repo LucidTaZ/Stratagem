@@ -65,7 +65,8 @@ public class PlaceStructure : NetworkBehaviour {
 		structure.transform.rotation = rotation;
 		NetworkServer.Spawn(structure);
 
-		BelongsToTeam childBtt = structure.AddComponent<BelongsToTeam>();
+		BelongsToTeam childBtt = structure.GetComponent<BelongsToTeam>();
+		Debug.Assert(childBtt != null);
 		childBtt.CopyFrom(btt);
 
 		playSound();

@@ -12,10 +12,12 @@ public class NetworkControlConstraint : NetworkBehaviour {
 		Debug.Assert(LocalModel != RemoteModel);
 
 		if (LocalModel.activeSelf) {
-			Debug.LogWarning("Make sure LocalModel is not active by default");
+			// This warning triggers when a player object is sent over the network, but that's a false positive...
+			Debug.LogWarning("Make sure LocalModel is not active by default in the prefab");
 		}
 		if (!RemoteModel.activeSelf) {
-			Debug.LogWarning("Make sure RemoteModel is active by default");
+			// This warning triggers when a player object is sent over the network, but that's a false positive...
+			Debug.LogWarning("Make sure RemoteModel is active by default in the prefab");
 		}
 	}
 

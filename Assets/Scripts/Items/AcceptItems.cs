@@ -8,7 +8,12 @@ public class AcceptItems : MonoBehaviour {
 	Team team;
 
 	void Start () {
-		team = transform.parent.gameObject.GetComponent<BelongsToTeam>().team;
+		GameObject parent = transform.parent.gameObject;
+		Debug.Assert(parent != null);
+
+		BelongsToTeam parentBtt = parent.GetComponent<BelongsToTeam>();
+		Debug.Assert(parentBtt != null);
+		team = parentBtt.team;
 
 		inventory = GetComponent<Inventory>();
 		Debug.Assert(inventory != null); // Cannot suck items when we have no place to put it

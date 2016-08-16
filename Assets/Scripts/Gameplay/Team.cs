@@ -2,7 +2,7 @@
 using System;
 
 [Serializable]
-public class Team {
+public struct Team {
 	public int id;
 	public string name;
 	public Color color;
