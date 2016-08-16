@@ -5,7 +5,9 @@ public class Inventory : NetworkBehaviour {
 	public ItemCollection Contents = new ItemCollection();
 
 	[ClientRpc]
-	public void RpcAdd (Item item) {
+	public void RpcAdd (ItemIdentifier itemIdentifier) {
+		// We take the identifier and not the item object itself, because it loses polymorphism during transport
+		Item item = ItemFactory.Instance().Create(itemIdentifier);
 		Add(item);
 	}
 
