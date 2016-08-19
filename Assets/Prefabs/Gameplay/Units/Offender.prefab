@@ -115,6 +115,9 @@ GameObject:
   - 114: {fileID: 11434504}
   - 114: {fileID: 11406218}
   - 114: {fileID: 11407812}
+  - 114: {fileID: 11439930}
+  - 114: {fileID: 11416784}
+  - 114: {fileID: 11455716}
   m_Layer: 0
   m_Name: Offender
   m_TagString: Attacker
@@ -567,6 +570,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Initial: 8
+--- !u!114 &11416784
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!114 &11434504
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -578,6 +601,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f03b4f6b1a21c479e41aecb2596c28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11439930
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 150
+    i1: 233
+    i2: 91
+    i3: 242
+    i4: 61
+    i5: 72
+    i6: 250
+    i7: 4
+    i8: 136
+    i9: 27
+    i10: 150
+    i11: 45
+    i12: 212
+    i13: 254
+    i14: 144
+    i15: 19
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &11443334
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -609,6 +664,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Axis: {x: 0, y: 1, z: 0}
   Rate: 90
+--- !u!114 &11455716
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 162476}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10acb7a60f3e514886d40f688d48d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    id: 0
+    name: 
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &11468934
 MonoBehaviour:
   m_ObjectHideFlags: 1

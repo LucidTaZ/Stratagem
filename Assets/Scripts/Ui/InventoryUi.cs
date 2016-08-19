@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Networking;
 
-public class InventoryUi : MonoBehaviour {
+public class InventoryUi : NetworkBehaviour {
 	public GameObject UiContainerPrefab;
 	public Button ButtonPrefab;
 
@@ -12,6 +13,9 @@ public class InventoryUi : MonoBehaviour {
 	PlayerState playerState;
 
 	void Start () {
+		if (!hasAuthority) {
+			return;
+		}
 		inventory = GetComponent<Inventory>();
 		Debug.Assert(inventory != null);
 		Debug.Assert(UiContainerPrefab != null);
@@ -60,6 +64,9 @@ public class InventoryUi : MonoBehaviour {
 	}
 
 	void Update () {
+		if (!hasAuthority) {
+			return;
+		}
 		if (Input.GetButtonDown("Inventory")) {
 			toggleInventory();
 		}

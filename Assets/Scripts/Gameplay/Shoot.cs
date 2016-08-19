@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class Shoot : MonoBehaviour {
+public class Shoot : NetworkBehaviour {
 
 	public GameObject Projectile;
 	public Transform[] EjectionPoints;
@@ -15,7 +16,7 @@ public class Shoot : MonoBehaviour {
 
 	PlayerState playerState;
 
-	void Start () {
+	void Awake () {
 		isPlayer = CompareTag("Player");
 		if (isPlayer) {
 			playerState = GameObject.FindGameObjectWithTag("PlayerState").GetComponent<PlayerState>();
@@ -26,22 +27,18 @@ public class Shoot : MonoBehaviour {
 	}
 
 	void Update () {
-		if (isPlayer && Input.GetButton("Shoot") && playerState.CanShoot) {
-			TryToShoot();
+		if (isPlayer && hasAuthority && Input.GetButton("Shoot") && playerState.CanShoot) {
+			Vector3 direction = Camera.main.transform.rotation * new Vector3(0f, 0f, 2f);
+			CmdPlayerShoot(direction);
 		}
 	}
 
-	public void TryToShoot ()
-	{
-		if (cooldownTimer < Time.time) {
-			doShoot();
-			cooldownTimer = Time.time + Cooldown;
-			setNextEjectionPoint();
-		}
+	[Command]
+	public void CmdPlayerShoot (Vector3 direction) {
+		TryToShootAtDirection(direction);
 	}
 
-	public void TryToShootAtDirection (Vector3 direction)
-	{
+	public void TryToShootAtDirection (Vector3 direction) {
 		if (cooldownTimer < Time.time) {
 			doShootAtDirection(direction);
 			cooldownTimer = Time.time + Cooldown;
@@ -49,16 +46,11 @@ public class Shoot : MonoBehaviour {
 		}
 	}
 
-	void doShoot ()
-	{
-		Vector3 direction = Camera.main.transform.rotation * new Vector3(0f, 0f, 2f);
-		doShootAtDirection(direction);
-	}
-
 	void doShootAtDirection (Vector3 direction) {
 		GameObject newProjectile = Instantiate(Projectile);
 		Vector3 ejectionPoint = GetCurrentEjectionPoint();
 		newProjectile.transform.position = ejectionPoint;
+
 		newProjectile.GetComponent<Rigidbody>().AddForce(direction.normalized * Velocity, ForceMode.VelocityChange);
 
 		DealsDamage dealsDamage = newProjectile.GetComponent<DealsDamage>();
@@ -67,6 +59,8 @@ public class Shoot : MonoBehaviour {
 		} else {
 			Debug.LogWarning("Firing a projectile that deals no damage");
 		}
+
+		NetworkServer.Spawn(newProjectile);
 	}
 
 	public Vector3 GetCurrentEjectionPoint () {

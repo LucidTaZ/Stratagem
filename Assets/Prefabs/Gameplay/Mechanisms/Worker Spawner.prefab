@@ -30,6 +30,8 @@ GameObject:
   - 114: {fileID: 11473120}
   - 65: {fileID: 6521908}
   - 114: {fileID: 11468540}
+  - 114: {fileID: 11402354}
+  - 114: {fileID: 11414792}
   m_Layer: 0
   m_Name: Worker Spawner
   m_TagString: Structure
@@ -190,6 +192,53 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &11402354
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 87
+    i1: 65
+    i2: 235
+    i3: 129
+    i4: 106
+    i5: 123
+    i6: 47
+    i7: 164
+    i8: 24
+    i9: 10
+    i10: 1
+    i11: 110
+    i12: 65
+    i13: 10
+    i14: 71
+    i15: 18
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &11414792
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10acb7a60f3e514886d40f688d48d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    id: 0
+    name: 
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &11420542
 MonoBehaviour:
   m_ObjectHideFlags: 1

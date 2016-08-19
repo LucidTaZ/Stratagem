@@ -27,7 +27,7 @@ public class PlayerState : MonoBehaviour {
 
 	void ensurePlayerReference () {
 		if (player == null) {
-			player = GameObject.FindGameObjectWithTag("Player");
+			player = FindGameobjects.FindLocalPlayerObject();
 		}
 	}
 

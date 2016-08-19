@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlaceStructure : MonoBehaviour {
+// Usage: place on Player object but disabled. Enable it to go into "placement mode"
+public class PlaceStructure : NetworkBehaviour {
 	public GameObject Subject;
 
 	Material BlueprintMaterial;
@@ -13,10 +15,9 @@ public class PlaceStructure : MonoBehaviour {
 	const float MAX_DISTANCE = 5f;
 	const float MIN_NORMAL_ALIGNMENT = 0.9f; // Minimum dot product of surface normal and "up"
 
-	void Start () {
+	void Awake () {
 		btt = GetComponent<BelongsToTeam>();
 		Debug.Assert(btt != null);
-		Debug.Assert(Subject != null);
 
 		playerState = GameObject.FindGameObjectWithTag("PlayerState").GetComponent<PlayerState>();
 		Debug.Assert(playerState != null);
@@ -25,13 +26,23 @@ public class PlaceStructure : MonoBehaviour {
 		BuildSound = Resources.Load<AudioClip>("BuildSound");
 	}
 
+	void OnEnable () {
+		Debug.Assert(Subject != null);
+	}
+
+	void disableSelf () {
+		Subject = null;
+		enabled = false;
+	}
+
 	void Update () {
 		Vector3 position;
 		Quaternion rotation;
-		if (playerState.CanPlaceStructures && canBuild(out position, out rotation)) {
+		if (hasAuthority && playerState.CanPlaceStructures && canBuild(out position, out rotation)) {
 			if (Input.GetButton("Build")) {
-				buildStructure(position, rotation);
-				Destroy(this); // Destroy this script instance
+				CmdBuildStructure(Subject.GetComponent<NetworkIdentity>().assetId, position, rotation);
+				playSound();
+				disableSelf();
 			} else {
 				renderBlueprint(position, rotation);
 			}
@@ -57,15 +68,19 @@ public class PlaceStructure : MonoBehaviour {
 		return true;
 	}
 
-	void buildStructure (Vector3 position, Quaternion rotation) {
-		GameObject structure = Instantiate(Subject);
+	[Command]
+	public void CmdBuildStructure (NetworkHash128 subjectId, Vector3 position, Quaternion rotation) {
+		GameObject subject = ClientScene.prefabs[subjectId];
+		GameObject structure = Instantiate(subject);
 		structure.transform.position = position;
 		structure.transform.rotation = rotation;
 
-		BelongsToTeam childBtt = structure.AddComponent<BelongsToTeam>();
+		BelongsToTeam childBtt = structure.GetComponent<BelongsToTeam>();
+		Debug.Assert(btt != null);
+		Debug.Assert(childBtt != null);
 		childBtt.CopyFrom(btt);
 
-		playSound();
+		NetworkServer.Spawn(structure);
 	}
 
 	void playSound () {

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class BelongsToTeam : MonoBehaviour {
+public class BelongsToTeam : NetworkBehaviour {
+	[SyncVar]
 	public Team team;
 
 	public void CopyFrom (BelongsToTeam that) {

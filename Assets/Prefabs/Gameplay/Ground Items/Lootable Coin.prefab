@@ -62,6 +62,7 @@ GameObject:
   - 136: {fileID: 13650664}
   - 114: {fileID: 11435550}
   - 114: {fileID: 11463738}
+  - 114: {fileID: 11400528}
   m_Layer: 8
   m_Name: Lootable Coin
   m_TagString: Resource
@@ -201,6 +202,38 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!114 &11400528
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 214
+    i1: 190
+    i2: 24
+    i3: 133
+    i4: 225
+    i5: 123
+    i6: 225
+    i7: 84
+    i8: 218
+    i9: 179
+    i10: 64
+    i11: 201
+    i12: 217
+    i13: 112
+    i14: 202
+    i15: 231
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &11408692
 MonoBehaviour:
   m_ObjectHideFlags: 1

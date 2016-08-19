@@ -17,6 +17,8 @@ GameObject:
   - 114: {fileID: 11475180}
   - 82: {fileID: 8218254}
   - 114: {fileID: 11459998}
+  - 114: {fileID: 11403628}
+  - 114: {fileID: 11471912}
   m_Layer: 10
   m_Name: Bullet
   m_TagString: Untagged
@@ -158,6 +160,38 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &11403628
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 25
+    i1: 64
+    i2: 92
+    i3: 56
+    i4: 169
+    i5: 198
+    i6: 35
+    i7: 212
+    i8: 43
+    i9: 212
+    i10: 101
+    i11: 254
+    i12: 244
+    i13: 113
+    i14: 173
+    i15: 156
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &11435098
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -198,6 +232,26 @@ MonoBehaviour:
   Clips:
   - {fileID: 8300000, guid: d24247d85d2105b409b126ae1f1c6c33, type: 3}
   - {fileID: 8300000, guid: ec829dcb2880e1b4ea6a06c0635fa5fa, type: 3}
+--- !u!114 &11471912
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 3
+  m_SendInterval: 0.04761905
+  m_SyncRotationAxis: 0
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!114 &11475180
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -271,6 +325,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 0.461
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_TransformSyncMode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SendInterval
+      value: 0.04761905
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

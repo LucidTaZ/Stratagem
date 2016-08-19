@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
+
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.Callbacks;
@@ -133,6 +135,7 @@ public class PrefabInstance : MonoBehaviour
 
 		pi.enabled = false;
 		GameObject go = PrefabUtility.InstantiatePrefab(pi.prefab) as GameObject;
+
 		if (registerUndo) {
 			Undo.RegisterCreatedObjectUndo(go, "Instantiate Prefab");
 		}

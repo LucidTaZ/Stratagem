@@ -44,6 +44,8 @@ GameObject:
   - 114: {fileID: 11438206}
   - 65: {fileID: 6596638}
   - 114: {fileID: 11492492}
+  - 114: {fileID: 11470712}
+  - 114: {fileID: 11453636}
   m_Layer: 0
   m_Name: Offender Spawner
   m_TagString: Structure
@@ -162,6 +164,53 @@ MonoBehaviour:
   CooldownSeconds: 10
   SpawnImmediately: 1
   AllowMultipleItems: 0
+--- !u!114 &11453636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10acb7a60f3e514886d40f688d48d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    id: 0
+    name: 
+    color: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &11470712
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 51
+    i1: 50
+    i2: 125
+    i3: 12
+    i4: 72
+    i5: 180
+    i6: 42
+    i7: 20
+    i8: 9
+    i9: 110
+    i10: 145
+    i11: 111
+    i12: 95
+    i13: 106
+    i14: 80
+    i15: 248
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &11492492
 MonoBehaviour:
   m_ObjectHideFlags: 1

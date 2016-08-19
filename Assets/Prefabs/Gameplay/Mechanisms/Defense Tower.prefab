@@ -49,6 +49,8 @@ GameObject:
   - 114: {fileID: 11429458}
   - 114: {fileID: 11464968}
   - 114: {fileID: 11477004}
+  - 114: {fileID: 11437512}
+  - 114: {fileID: 11470872}
   m_Layer: 0
   m_Name: Defense Tower
   m_TagString: Structure
@@ -240,6 +242,38 @@ MonoBehaviour:
   - {fileID: 416494}
   Velocity: 100
   Cooldown: 0.5
+--- !u!114 &11437512
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 49
+    i1: 205
+    i2: 116
+    i3: 151
+    i4: 235
+    i5: 211
+    i6: 69
+    i7: 68
+    i8: 91
+    i9: 166
+    i10: 10
+    i11: 237
+    i12: 113
+    i13: 196
+    i14: 151
+    i15: 97
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &11464968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -257,6 +291,21 @@ MonoBehaviour:
   - Attacker
   - Worker
   CurrentTarget: {fileID: 0}
+--- !u!114 &11470872
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b10acb7a60f3e514886d40f688d48d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    id: 0
+    name: 
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &11477004
 MonoBehaviour:
   m_ObjectHideFlags: 1

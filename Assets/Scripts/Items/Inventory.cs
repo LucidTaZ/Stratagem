@@ -1,7 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class Inventory : MonoBehaviour {
+public class Inventory : NetworkBehaviour {
 	public ItemCollection Contents = new ItemCollection();
+
+	[ClientRpc]
+	public void RpcAdd (ItemIdentifier itemIdentifier) {
+		// We take the identifier and not the item object itself, because it loses polymorphism during transport
+		Item item = ItemFactory.Instance().Create(itemIdentifier);
+		Add(item);
+	}
 
 	public void Add (Item item) {
 		Contents.Items.Add(item);

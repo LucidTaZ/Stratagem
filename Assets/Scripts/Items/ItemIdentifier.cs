@@ -1,5 +1,5 @@
 ﻿[System.Serializable]
-public class ItemIdentifier {
+public struct ItemIdentifier {
 	public string Name;
 
 	public ItemIdentifier (string name) {

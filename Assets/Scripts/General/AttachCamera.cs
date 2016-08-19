@@ -1,15 +1,19 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class AttachCamera : MonoBehaviour {
+public class AttachCamera : NetworkBehaviour {
 	public Transform AttachmentPoint;
 
 	CameraBehavior cb;
 
 	bool quitting = false;
 
-	void Start () {
+	void Awake () {
 		cb = Camera.main.GetComponent<CameraBehavior>();
 		Debug.Assert(cb != null);
+	}
+
+	public void PerformAttach () {
 		cb.AttachTo(AttachmentPoint);
 	}
 
@@ -19,10 +23,11 @@ public class AttachCamera : MonoBehaviour {
 
 	void OnDestroy () {
 		// Also gets called on application quit.
-		if (!quitting) {
+		if (!quitting && hasAuthority) {
 			detach();
 		}
 	}
+
 	void detach () {
 		cb.Detach();
 	}

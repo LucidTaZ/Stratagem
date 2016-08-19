@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class Hitpoints : MonoBehaviour {
+public class Hitpoints : NetworkBehaviour {
 
 	public int Initial = 5;
 
@@ -18,6 +19,14 @@ public class Hitpoints : MonoBehaviour {
 	}
 
 	void Die () {
-		Destroy(gameObject);
+		if (isActuallyLocalPlayer()) {
+			Camera.main.GetComponent<CameraBehavior>().Detach();
+		}
+
+		NetworkServer.Destroy(gameObject);
+	}
+
+	bool isActuallyLocalPlayer () {
+		return CompareTag("Player") && hasAuthority;
 	}
 }
