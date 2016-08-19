@@ -14,13 +14,10 @@ public class Despawn : NetworkBehaviour {
 		if (Time.time < DeathTime) {
 			return;
 		}
+		Debug.Assert(!hasAuthority || NetworkServer.active);
 		if (!hasAuthority) {
 			return;
 		}
-		if (NetworkServer.active) {
-			NetworkServer.Destroy(gameObject);
-		} else {
-			Destroy(gameObject);
-		}
+		NetworkServer.Destroy(gameObject);
 	}
 }

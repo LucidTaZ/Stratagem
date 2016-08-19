@@ -19,14 +19,20 @@ public class Hitpoints : NetworkBehaviour {
 	}
 
 	void Die () {
-		if (isActuallyLocalPlayer()) {
-			Camera.main.GetComponent<CameraBehavior>().Detach();
+		Debug.Assert(NetworkServer.active);
+
+		if (CompareTag("Player")) {
+			RpcDetachCamera();
 		}
 
 		NetworkServer.Destroy(gameObject);
 	}
 
-	bool isActuallyLocalPlayer () {
-		return CompareTag("Player") && hasAuthority;
+	[ClientRpc]
+	public void RpcDetachCamera () {
+		if (hasAuthority) {
+			// Only for the local player
+			Camera.main.GetComponent<CameraBehavior>().Detach();
+		}
 	}
 }

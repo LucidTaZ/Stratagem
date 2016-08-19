@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class DealsDamage : MonoBehaviour {
+public class DealsDamage : NetworkBehaviour {
 	public int Damage = 1;
 
 	public float SecondsBetweenTicks = 1.0f;
@@ -37,6 +38,9 @@ public class DealsDamage : MonoBehaviour {
 	}
 
 	void dealDamageIfApplicable (GameObject other) {
+		if (!hasAuthority) {
+			return;
+		}
 		Hitpoints hitpoints;
 		if ((hitpoints = other.GetComponent<Hitpoints>()) != null) {
 			BelongsToTeam btt = other.GetComponent<BelongsToTeam>();
