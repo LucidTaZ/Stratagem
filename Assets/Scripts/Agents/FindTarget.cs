@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
-public class FindTarget : MonoBehaviour {
+public class FindTarget : NetworkBehaviour {
 	public float Range = Mathf.Infinity;
 
 	public string[] Tags;
 
-	[HideInInspector]
 	public GameObject CurrentTarget;
 
 	Vector3 basePosition;
