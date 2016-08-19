@@ -495,7 +495,7 @@ MonoBehaviour:
   SpawnLocation: {fileID: 461670}
   CooldownSeconds: 10
   SpawnImmediately: 1
-  AllowMultipleItems: 0
+  ItemLimit: 1
 --- !u!114 &11409560
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -616,7 +616,7 @@ MonoBehaviour:
       Name: Sieger Spawner
     Cost: 40
   - Identifier:
-      Name: Guard Tower
+      Name: Defense Tower
     Cost: 100
 --- !u!114 &11451998
 MonoBehaviour:
@@ -907,7 +907,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: Assortment.Array.data[4].Identifier.Name
-      value: Guard Tower
+      value: Defense Tower
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: Assortment.Array.data[4].Cost
