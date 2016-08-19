@@ -190,7 +190,7 @@ MonoBehaviour:
   SpawnLocation: {fileID: 411224}
   CooldownSeconds: 10
   SpawnImmediately: 1
-  AllowMultipleItems: 0
+  ItemLimit: 3
 --- !u!114 &11463668
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -241,6 +241,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalPosition.y
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ItemLimit
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

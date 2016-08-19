@@ -17,10 +17,10 @@ public class Spawner : NetworkBehaviour {
 	public float CooldownSeconds = 10;
 	public bool SpawnImmediately = true;
 
-	public bool AllowMultipleItems = true;
+	public int ItemLimit = 1; // Set to 0 for limitless
 
 	float cooldownLeft;
-	bool itemExists = false;
+	int itemsExisting = 0;
 
 	void Start () {
 		if (SpawnImmediately) {
@@ -46,14 +46,14 @@ public class Spawner : NetworkBehaviour {
 		if (!hasAuthority) {
 			return;
 		}
-		if (!AllowMultipleItems && itemExists) {
+		if (itemsExisting >= ItemLimit && ItemLimit != 0) {
 			return;
 		}
 		cooldownLeft -= Time.deltaTime;
 		if (cooldownLeft <= 0) {
 			PerformSpawn();
 			cooldownLeft = CooldownSeconds;
-			itemExists = true;
+			itemsExisting++;
 		}
 	}
 
@@ -85,7 +85,7 @@ public class Spawner : NetworkBehaviour {
 	}
 
 	public void OnSubjectDestroyed (GameObject subject) {
-		itemExists = false;
+		itemsExisting--;
 	}
 
 #if UNITY_EDITOR
