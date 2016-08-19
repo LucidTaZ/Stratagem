@@ -5,22 +5,23 @@ public class Approach : NetworkBehaviour {
 	public float ApproachDistanceMin = 0;
 	float approachDistanceMinSq;
 
-	GameObject currentTarget;
-
 	Vector3 basePosition;
-	NavMeshAgent nav;
+
+	NavMeshAgent nav; // nav instructions are replicated via ClientRpc to have client-side movement prediction with server authority
 
 	FindTarget findTarget;
 
-	void Start () {
-		basePosition = transform.position;
-		approachDistanceMinSq = ApproachDistanceMin * ApproachDistanceMin;
-
+	void Awake () {
 		nav = GetComponent<NavMeshAgent>();
 		findTarget = GetComponent<FindTarget>();
 
 		Debug.Assert(nav != null);
 		Debug.Assert(findTarget != null);
+	}
+
+	void Start () {
+		basePosition = transform.position;
+		approachDistanceMinSq = ApproachDistanceMin * ApproachDistanceMin;
 	}
 
 	void Update () {
@@ -37,26 +38,46 @@ public class Approach : NetworkBehaviour {
 
 	void followCurrentTarget () {
 		if (findTarget.CurrentTarget != null) {
-			nav.SetDestination(findTarget.CurrentTarget.transform.position);
+			RpcSetNavDestination(findTarget.CurrentTarget.transform.position);
 		}
 	}
 
 	void approach () {
 		if (findTarget.CurrentTarget == null) {
-			nav.Resume();
+			RpcNavResume();
 			return;
 		}
 
 		bool closeEnough = (findTarget.CurrentTarget.transform.position - transform.position).sqrMagnitude < approachDistanceMinSq;
 		if (closeEnough) {
-			nav.Stop();
+			RpcNavStop();
 		} else {
-			nav.Resume();
+			RpcNavResume();
 		}
 	}
 
 	void headHome () {
-		nav.SetDestination(basePosition);
+		RpcSetNavDestinationAndResume(basePosition);
+	}
+
+	[ClientRpc]
+	public void RpcSetNavDestination (Vector3 position) {
+		nav.SetDestination(position);
+	}
+
+	[ClientRpc]
+	public void RpcSetNavDestinationAndResume (Vector3 position) {
+		nav.SetDestination(position);
 		nav.Resume();
+	}
+
+	[ClientRpc]
+	public void RpcNavResume () {
+		nav.Resume();
+	}
+
+	[ClientRpc]
+	public void RpcNavStop () {
+		nav.Stop();
 	}
 }
