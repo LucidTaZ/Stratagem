@@ -24,7 +24,7 @@ public class Attack : NetworkBehaviour {
 		}
 		if (findTarget.CurrentTarget != null) {
 			bool closeEnough = (findTarget.CurrentTarget.transform.position - transform.position).sqrMagnitude < shootingRangeMaxSq;
-			if (closeEnough) {
+			if (closeEnough && !shoot.IsOnCooldown()) {
 				Vector3 direction = aim();
 				tryToAttack(direction);
 			} else {

@@ -16,6 +16,10 @@ public class Shoot : NetworkBehaviour {
 
 	PlayerState playerState;
 
+	public bool IsOnCooldown () {
+		return cooldownTimer >= Time.time;
+	}
+
 	void Awake () {
 		isPlayer = CompareTag("Player");
 		if (isPlayer) {
