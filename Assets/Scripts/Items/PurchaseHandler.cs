@@ -24,12 +24,11 @@ public class PurchaseHandler : NetworkBehaviour {
 
 		if (teamInventory.Count(zeny) >= purchaseableItem.Cost) {
 			teamInventory.Remove(zeny, purchaseableItem.Cost);
-			CmdBuyItem(purchaseableItem);
+			buyItem(purchaseableItem);
 		}
 	}
 
-	[Command]
-	public void CmdBuyItem (PurchaseableItem purchaseableItem) {
+	void buyItem (PurchaseableItem purchaseableItem) {
 		PurchaseDropZone dropZone = GetComponentInParent<PurchaseDropZone>();
 		if (dropZone == null) {
 			Debug.LogError("Please make sure that the structure GameObject has a PurchaseDropZone component.");

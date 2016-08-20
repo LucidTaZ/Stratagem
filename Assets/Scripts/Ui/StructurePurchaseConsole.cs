@@ -39,9 +39,17 @@ public class StructurePurchaseConsole : NetworkBehaviour {
 			button.transform.localPosition.z
 		);
 
-		button.onClick.AddListener(() => Handler.Purchase(purchaseableItem));
+		button.onClick.AddListener(() => purchaseButtonClicked(purchaseableItem));
 
 		Text label = button.GetComponentInChildren<Text>();
 		label.text = caption;
+	}
+
+	void purchaseButtonClicked (PurchaseableItem purchaseableItem) {
+		GameObject player = FindGameobjects.FindLocalPlayerObject();
+		Debug.Assert(player != null);
+		PurchaseCustomer pc = player.GetComponent<PurchaseCustomer>();
+		Debug.Assert(pc != null);
+		pc.Purchase(purchaseableItem, Handler);
 	}
 }

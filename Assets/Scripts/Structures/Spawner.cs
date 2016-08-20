@@ -76,12 +76,7 @@ public class Spawner : NetworkBehaviour {
 			childBtt.CopyFrom(btt);
 		}
 
-		if (subject.CompareTag("Player")) {
-			// Special case: the "network player" is the Heart, the "player object" is spawned by it
-			NetworkServer.SpawnWithClientAuthority(subject, gameObject);
-		} else {
-			NetworkServer.Spawn(subject);
-		}
+		NetworkServer.Spawn(subject);
 	}
 
 	public void OnSubjectDestroyed (GameObject subject) {
