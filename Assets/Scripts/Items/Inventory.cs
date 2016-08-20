@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using System.Collections.Generic;
 
 public class Inventory : NetworkBehaviour {
-	public ItemCollection Contents = new ItemCollection();
+	public List<Item> Contents = new List<Item>();
 
 	[ClientRpc]
 	public void RpcAdd (ItemIdentifier itemIdentifier) {
@@ -12,11 +13,11 @@ public class Inventory : NetworkBehaviour {
 	}
 
 	public void Add (Item item) {
-		Contents.Items.Add(item);
+		Contents.Add(item);
 	}
 
 	public void Remove (Item item) {
-		if (!Contents.Items.Remove(item)) {
+		if (!Contents.Remove(item)) {
 			Debug.LogError("Failed to remove item from inventory");
 		}
 	}
@@ -28,7 +29,7 @@ public class Inventory : NetworkBehaviour {
 	}
 
 	public Item Take (ItemIdentifier itemIdentifier) {
-		foreach (Item item in Contents.Items) {
+		foreach (Item item in Contents) {
 			if (item.Name == itemIdentifier.Name) {
 				Remove(item);
 				return item;
@@ -39,7 +40,7 @@ public class Inventory : NetworkBehaviour {
 	}
 
 	public bool Contains (ItemIdentifier itemIdentifier) {
-		foreach (Item item in Contents.Items) {
+		foreach (Item item in Contents) {
 			if (item.Name == itemIdentifier.Name) {
 				return true;
 			}
@@ -49,7 +50,7 @@ public class Inventory : NetworkBehaviour {
 
 	public int Count (ItemIdentifier itemIdentifier) {
 		int result = 0;
-		foreach (Item item in Contents.Items) {
+		foreach (Item item in Contents) {
 			if (item.Name == itemIdentifier.Name) {
 				result++;
 			}

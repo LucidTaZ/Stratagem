@@ -6,10 +6,9 @@ public class PurchaseHandler : NetworkBehaviour {
 
 	Inventory teamInventory;
 
-	void Start () {
-		teamInventory = GameObject.FindGameObjectWithTag("ResourceHolder").GetComponent<Inventory>();
+	void Awake () {
+		teamInventory = GetComponent<Inventory>();
 		Debug.Assert(teamInventory != null);
-
 		Debug.Assert(Assortment != null);
 	}
 

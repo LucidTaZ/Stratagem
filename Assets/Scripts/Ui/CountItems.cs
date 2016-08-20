@@ -4,21 +4,33 @@ using UnityEngine.UI;
 public class CountItems : MonoBehaviour {
 	public ItemIdentifier Item;
 
-	public Inventory TeamInventory;
+	Inventory teamInventory;
 
 	Text textField;
 	string format;
 
 	void Start () {
-		Debug.Assert(TeamInventory != null);
-
 		textField = GetComponent<Text>();
 		Debug.Assert(textField != null);
 		format = textField.text;
 	}
 
 	void Update () {
-		int count = TeamInventory.Count(Item);
+		if (teamInventory == null) {
+			setTeam();
+			return;
+		}
+		int count = teamInventory.Count(Item);
 		textField.text = string.Format(format, count);
+	}
+
+	void setTeam () {
+		GameObject localPlayer = FindGameobjects.FindLocalPlayerObject();
+		if (localPlayer == null) {
+			return;
+		}
+		BelongsToTeam btt = localPlayer.GetComponent<BelongsToTeam>();
+		Debug.Assert(btt != null);
+		teamInventory = FindGameobjects.FindTeamInventory(btt.team);
 	}
 }

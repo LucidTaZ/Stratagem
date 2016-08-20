@@ -10,7 +10,6 @@ TagManager:
   - Worker
   - ItemFactory
   - PlayerState
-  - ResourceHolder
   - Heart
   layers:
   - Default

@@ -68,6 +68,7 @@ GameObject:
   - 114: {fileID: 11433858}
   - 114: {fileID: 11426200}
   - 114: {fileID: 11439444}
+  - 114: {fileID: 11487016}
   m_Layer: 0
   m_Name: Heart
   m_TagString: Heart
@@ -695,6 +696,38 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &11487016
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 973647b2058d21045a6ec7579ed0d74c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Contents:
+  - Name: Zeny
+    GroundItem: {fileID: 0}
+  - Name: Zeny
+    GroundItem: {fileID: 0}
+  - Name: Zeny
+    GroundItem: {fileID: 0}
+  - Name: Zeny
+    GroundItem: {fileID: 0}
+  - Name: Zeny
+    GroundItem: {fileID: 0}
+  - Name: Zeny
+    GroundItem: {fileID: 0}
+  - Name: Zeny
+    GroundItem: {fileID: 0}
+  - Name: Zeny
+    GroundItem: {fileID: 0}
+  - Name: Zeny
+    GroundItem: {fileID: 0}
+  - Name: Zeny
+    GroundItem: {fileID: 0}
 --- !u!114 &11488608
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -856,8 +889,16 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: Contents.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: Assortment.Array.size
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Contents.Items.Array.size
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalPlayerAuthority
@@ -986,6 +1027,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_AssetId.i15
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Contents.Items.Array.data[0].Name
+      value: Zeny
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Contents.Array.data[0].Name
+      value: Zeny
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
