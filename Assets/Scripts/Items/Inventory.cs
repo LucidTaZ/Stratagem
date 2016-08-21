@@ -3,21 +3,17 @@ using UnityEngine.Networking;
 using System.Collections.Generic;
 
 public class Inventory : NetworkBehaviour {
-	public List<Item> Contents = new List<Item>();
+	// http://forum.unity3d.com/threads/syncvar-vs-clientrpc-for-syncing-arrays-and-structs.350203/
+	public class ItemCollection : SyncListStruct<ItemIdentifier> {}
 
-	[ClientRpc]
-	public void RpcAdd (ItemIdentifier itemIdentifier) {
-		// We take the identifier and not the item object itself, because it loses polymorphism during transport
-		Item item = ItemFactory.Instance().Create(itemIdentifier);
-		Add(item);
-	}
+	public ItemCollection Contents = new ItemCollection();
 
 	public void Add (Item item) {
-		Contents.Add(item);
+		Contents.Add(new ItemIdentifier(item.Name));
 	}
 
 	public void Remove (Item item) {
-		if (!Contents.Remove(item)) {
+		if (!Contents.Remove(new ItemIdentifier(item.Name))) {
 			Debug.LogError("Failed to remove item from inventory");
 		}
 	}
@@ -29,8 +25,9 @@ public class Inventory : NetworkBehaviour {
 	}
 
 	public Item Take (ItemIdentifier itemIdentifier) {
-		foreach (Item item in Contents) {
-			if (item.Name == itemIdentifier.Name) {
+		foreach (ItemIdentifier ii in Contents) {
+			if (ii.Equals(itemIdentifier)) {
+				Item item = ItemFactory.Instance().Create(ii);
 				Remove(item);
 				return item;
 			}
@@ -40,8 +37,8 @@ public class Inventory : NetworkBehaviour {
 	}
 
 	public bool Contains (ItemIdentifier itemIdentifier) {
-		foreach (Item item in Contents) {
-			if (item.Name == itemIdentifier.Name) {
+		foreach (ItemIdentifier ii in Contents) {
+			if (ii.Equals(itemIdentifier)) {
 				return true;
 			}
 		}
@@ -50,10 +47,19 @@ public class Inventory : NetworkBehaviour {
 
 	public int Count (ItemIdentifier itemIdentifier) {
 		int result = 0;
-		foreach (Item item in Contents) {
-			if (item.Name == itemIdentifier.Name) {
+		foreach (ItemIdentifier ii in Contents) {
+			if (ii.Equals(itemIdentifier)) {
 				result++;
 			}
+		}
+		return result;
+	}
+
+	public List<Item> GetContents () {
+		List<Item> result = new List<Item>();
+		foreach (ItemIdentifier ii in Contents) {
+			Item item = ItemFactory.Instance().Create(ii);
+			result.Add(item);
 		}
 		return result;
 	}

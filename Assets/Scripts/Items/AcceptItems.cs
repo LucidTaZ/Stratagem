@@ -1,25 +1,33 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 
 // "Sucks" items from things that trigger it
-public class AcceptItems : MonoBehaviour {
+public class AcceptItems : NetworkBehaviour {
 	public ItemIdentifier[] Items;
 
 	Inventory inventory;
+	BelongsToTeam parentBtt;
 	Team team;
 
-	void Start () {
+	void Awake () {
 		GameObject parent = transform.parent.gameObject;
 		Debug.Assert(parent != null);
 
-		BelongsToTeam parentBtt = parent.GetComponent<BelongsToTeam>();
+		parentBtt = parent.GetComponent<BelongsToTeam>();
 		Debug.Assert(parentBtt != null);
-		team = parentBtt.team;
 
-		inventory = GetComponent<Inventory>();
+		inventory = GetComponentInParent<Inventory>();
 		Debug.Assert(inventory != null); // Cannot suck items when we have no place to put it
 	}
 
+	void Start () {
+		team = parentBtt.team;
+	}
+
 	void OnTriggerEnter (Collider other) {
+		if (!NetworkServer.active) {
+			return;
+		}
 		Inventory otherInventory = other.GetComponent<Inventory>();
 		BelongsToTeam otherBtt = other.GetComponent<BelongsToTeam>();
 

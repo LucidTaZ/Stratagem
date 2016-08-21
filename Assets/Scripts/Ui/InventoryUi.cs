@@ -38,7 +38,7 @@ public class InventoryUi : NetworkBehaviour {
 
 		// Foreach item in inventory...
 		int j = 0;
-		foreach (Item item in inventory.Contents) {
+		foreach (Item item in inventory.GetContents()) {
 			Button button = Instantiate(ButtonPrefab);
 			button.transform.SetParent(canvas.transform, false);
 			button.transform.position = button.transform.position + new Vector3(0f, j * -40f, 0f);

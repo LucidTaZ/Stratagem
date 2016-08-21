@@ -15,7 +15,8 @@ public class Lootable : NetworkBehaviour {
 	}
 
 	void PerformLoot (Inventory inventory) {
-		inventory.RpcAdd(ItemToLoot);
+		Item item = ItemFactory.Instance().Create(ItemToLoot);
+		inventory.Add(item);
 		NetworkServer.Destroy(gameObject);
 	}
 }
