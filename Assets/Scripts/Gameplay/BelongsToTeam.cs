@@ -10,10 +10,19 @@ public class BelongsToTeam : NetworkBehaviour {
 	}
 
 	void Start () {
+		changeMaterialColor();
+	}
+
+	void changeMaterialColor () {
 		foreach (MeshRenderer renderer in GetComponentsInChildren<MeshRenderer>()) {
 			if (renderer.gameObject.GetComponent<TextMesh>() == null) { // Prevent coloring the text, somehow making it invisible
 				renderer.material.color = team.color;
 			}
 		}
+	}
+
+	public void UpdateTeamColor (Color color) {
+		team.color = color;
+		changeMaterialColor();
 	}
 }

@@ -19,6 +19,7 @@ public class PlayerSpawner : NetworkBehaviour {
 
 	public void RegisterPlayer (NetworkConnection connection) {
 		spawnStates[connection] = new SpawnState();
+		spawnStates[connection].spawnTime = Time.time + 1; // Otherwise sometimes the client is not yet ready, I think
 	}
 
 	public void UnregisterPlayer (NetworkConnection connection) {

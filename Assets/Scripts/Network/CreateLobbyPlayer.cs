@@ -22,4 +22,8 @@ public class CreateLobbyPlayer : NetworkBehaviour {
 		}
 		NetworkServer.Destroy(playerInstance);
 	}
+
+	public GameObject getInstance () {
+		return playerInstance;
+	}
 }
