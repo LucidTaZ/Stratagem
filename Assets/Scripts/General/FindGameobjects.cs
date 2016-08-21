@@ -26,7 +26,7 @@ public class FindGameobjects {
 		foreach (GameObject go in GameObject.FindGameObjectsWithTag("Heart")) {
 			BelongsToTeam btt = go.GetComponent<BelongsToTeam>();
 			Debug.Assert(btt != null);
-			if (btt.team.Equals(team)) {
+			if (btt.team.IsSame(team)) {
 				return go;
 			}
 		}
