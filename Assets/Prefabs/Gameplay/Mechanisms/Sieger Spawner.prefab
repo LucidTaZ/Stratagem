@@ -46,6 +46,7 @@ GameObject:
   - 114: {fileID: 11409108}
   - 114: {fileID: 11406460}
   - 114: {fileID: 11475332}
+  - 114: {fileID: 11455750}
   m_Layer: 0
   m_Name: Sieger Spawner
   m_TagString: Structure
@@ -207,7 +208,28 @@ MonoBehaviour:
   SpawnLocation: {fileID: 419306}
   CooldownSeconds: 10
   SpawnImmediately: 1
-  AllowMultipleItems: 0
+  ItemLimit: 1
+--- !u!114 &11455750
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 146870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5530788c43b469749b1c5d1949118153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Domain:
+    Range: 40
+    Tags:
+    - Structure
+    - Heart
+    Center: {x: 0, y: 0, z: 0}
+    FriendlyTeam:
+      id: 0
+      name: 
+      color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &11475332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -231,12 +253,44 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: Tags.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Domain.Tags.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_TagString
       value: Structure
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_LocalPosition.y
       value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Range
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Tags.Array.data[0]
+      value: Structure
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Tags.Array.data[1]
+      value: Heart
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Domain.Range
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Domain.Tags.Array.data[0]
+      value: Structure
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Domain.Tags.Array.data[1]
+      value: Heart
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

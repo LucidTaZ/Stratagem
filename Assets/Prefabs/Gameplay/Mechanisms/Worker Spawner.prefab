@@ -32,6 +32,7 @@ GameObject:
   - 114: {fileID: 11414792}
   - 114: {fileID: 11479944}
   - 114: {fileID: 11474310}
+  - 114: {fileID: 11461336}
   m_Layer: 0
   m_Name: Worker Spawner
   m_TagString: Structure
@@ -252,6 +253,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Items:
   - Name: Zeny
+--- !u!114 &11461336
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5530788c43b469749b1c5d1949118153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Domain:
+    Range: 10
+    Tags:
+    - Resource
+    Center: {x: 0, y: 0, z: 0}
+    FriendlyTeam:
+      id: 0
+      name: 
+      color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &11468540
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -312,8 +333,32 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: Tags.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Domain.Tags.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_TagString
       value: Structure
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Tags.Array.data[0]
+      value: Resource
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Domain.Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Domain.Tags.Array.data[0]
+      value: Resource
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

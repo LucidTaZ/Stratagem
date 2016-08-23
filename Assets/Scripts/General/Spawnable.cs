@@ -2,6 +2,7 @@
 
 public class Spawnable : MonoBehaviour {
 	Spawner spawner;
+
 	PlayerSpawner heart;
 
 	public void SetSource (Spawner source) {

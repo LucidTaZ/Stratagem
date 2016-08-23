@@ -46,6 +46,7 @@ GameObject:
   - 114: {fileID: 11492492}
   - 114: {fileID: 11470712}
   - 114: {fileID: 11453636}
+  - 114: {fileID: 11453776}
   m_Layer: 0
   m_Name: Offender Spawner
   m_TagString: Structure
@@ -179,6 +180,30 @@ MonoBehaviour:
     id: 0
     name: 
     color: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &11453776
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5530788c43b469749b1c5d1949118153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Domain:
+    Range: 30
+    Tags:
+    - Player
+    - Structure
+    - Attacker
+    - Worker
+    - Heart
+    Center: {x: 0, y: 0, z: 0}
+    FriendlyTeam:
+      id: 0
+      name: 
+      color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &11470712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -231,12 +256,68 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: Tags.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Domain.Tags.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: m_LocalPosition.y
       value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: ItemLimit
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Range
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Tags.Array.data[0]
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Tags.Array.data[1]
+      value: Attacker
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Tags.Array.data[2]
+      value: Worker
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Tags.Array.data[3]
+      value: Structure
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Tags.Array.data[4]
+      value: Heart
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Domain.Range
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Domain.Tags.Array.data[0]
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Domain.Tags.Array.data[1]
+      value: Structure
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Domain.Tags.Array.data[2]
+      value: Attacker
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Domain.Tags.Array.data[3]
+      value: Worker
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Domain.Tags.Array.data[4]
+      value: Heart
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

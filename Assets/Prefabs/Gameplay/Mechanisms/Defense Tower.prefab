@@ -51,6 +51,7 @@ GameObject:
   - 114: {fileID: 11477004}
   - 114: {fileID: 11437512}
   - 114: {fileID: 11470872}
+  - 114: {fileID: 11498048}
   m_Layer: 0
   m_Name: Defense Tower
   m_TagString: Structure
@@ -285,11 +286,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca2811b1fbd3534f9f48a071f1b2015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 25
-  Tags:
-  - Player
-  - Attacker
-  - Worker
   CurrentTarget: {fileID: 0}
 --- !u!114 &11470872
 MonoBehaviour:
@@ -318,6 +314,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShootingRangeMax: 25
+--- !u!114 &11498048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5530788c43b469749b1c5d1949118153, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Domain:
+    Range: 25
+    Tags:
+    - Player
+    - Attacker
+    - Worker
+    Center: {x: 0, y: 0, z: 0}
+    FriendlyTeam:
+      id: 0
+      name: 
+      color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!208 &20822368
 NavMeshObstacle:
   m_ObjectHideFlags: 1
@@ -341,6 +359,14 @@ Prefab:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 0}
+      propertyPath: Tags.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Domain.Tags.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
       propertyPath: Cooldown
       value: 0.5
       objectReference: {fileID: 0}
@@ -352,6 +378,38 @@ Prefab:
       propertyPath: Projectile
       value: 
       objectReference: {fileID: 145714, guid: a524cf56dbe5b324487af30bee023407, type: 2}
+    - target: {fileID: 0}
+      propertyPath: Range
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Tags.Array.data[0]
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Tags.Array.data[1]
+      value: Attacker
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Tags.Array.data[2]
+      value: Worker
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Domain.Range
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Domain.Tags.Array.data[0]
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Domain.Tags.Array.data[1]
+      value: Attacker
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Domain.Tags.Array.data[2]
+      value: Worker
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 112188}
