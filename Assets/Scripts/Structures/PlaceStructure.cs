@@ -15,6 +15,13 @@ public class PlaceStructure : NetworkBehaviour {
 	const float MAX_DISTANCE = 5f;
 	const float MIN_NORMAL_ALIGNMENT = 0.9f; // Minimum dot product of surface normal and "up"
 
+	bool storedDomainVisuals;
+	MeshAndTransform domainMeshAndTransform; // Store the computed domain visuals, for efficiency
+
+	public bool IsPlacing {
+		get { return enabled; }
+	}
+
 	void Awake () {
 		btt = GetComponent<BelongsToTeam>();
 		Debug.Assert(btt != null);
@@ -33,6 +40,7 @@ public class PlaceStructure : NetworkBehaviour {
 	void disableSelf () {
 		Subject = null;
 		enabled = false;
+		storedDomainVisuals = false;
 	}
 
 	void Update () {
@@ -94,15 +102,25 @@ public class PlaceStructure : NetworkBehaviour {
 	}
 
 	void renderBlueprint (Vector3 position, Quaternion rotation) {
-		Matrix4x4 spawnlocationToLocal = Matrix4x4.TRS(position, rotation, Vector3.one);
+		Matrix4x4 buildlocationToLocal = Matrix4x4.TRS(position, rotation, Vector3.one);
 
-		foreach (Renderer mr in Subject.GetComponentsInChildren<Renderer>(true)) {
+		foreach (Renderer mr in Subject.GetComponentsInChildren<Renderer>()) {
 			MeshFilter filter;
 			if ((filter = mr.GetComponent<MeshFilter>()) != null) {
 				Mesh mesh = filter.sharedMesh;
-				Matrix4x4 meshrendererToWorld = spawnlocationToLocal * mr.transform.localToWorldMatrix;
+				Matrix4x4 meshrendererToWorld = buildlocationToLocal * mr.transform.localToWorldMatrix;
 				Graphics.DrawMesh(mesh, meshrendererToWorld, BlueprintMaterial, gameObject.layer, Camera.main);
 			}
+		}
+
+		KnowsDomain kd = Subject.GetComponent<KnowsDomain>();
+		if (kd != null) {
+			if (!storedDomainVisuals) {
+				domainMeshAndTransform = kd.GetRangeIndicatorBeforeConstruction();
+				storedDomainVisuals = true;
+			}
+			Matrix4x4 renderMatrix = buildlocationToLocal * domainMeshAndTransform.transform;
+			Graphics.DrawMesh(domainMeshAndTransform.mesh, renderMatrix, BlueprintMaterial, gameObject.layer, Camera.main);
 		}
 	}
 }

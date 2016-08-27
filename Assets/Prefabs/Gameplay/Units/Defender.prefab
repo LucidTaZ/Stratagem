@@ -620,10 +620,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca2811b1fbd3534f9f48a071f1b2015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 20
-  Tags:
-  - Player
-  - Attacker
   CurrentTarget: {fileID: 0}
 --- !u!114 &11474562
 MonoBehaviour:

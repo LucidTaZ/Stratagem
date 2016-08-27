@@ -2,20 +2,23 @@
 using UnityEngine.Networking;
 
 public class FindTarget : NetworkBehaviour {
-	public float Range = Mathf.Infinity;
-
-	public string[] Tags;
-
 	public GameObject CurrentTarget;
 
-	Vector3 basePosition;
+	TargetDomain domain;
+
+	void Awake () {
+		KnowsDomain kd = GetComponent<KnowsDomain>();
+		if (kd != null) {
+			domain = kd.Domain;
+		}
+	}
+
+	public void SetDomain (TargetDomain referenceDomain) {
+		domain = referenceDomain;
+	}
 
 	public void ForgetCurrentTarget () {
 		CurrentTarget = null;
-	}
-
-	void Start () {
-		basePosition = transform.position;
 	}
 
 	void Update () {
@@ -25,10 +28,10 @@ public class FindTarget : NetworkBehaviour {
 	}
 
 	GameObject findNewTarget () {
-		BelongsToTeam btt = GetComponent<BelongsToTeam>();
-		if (btt == null) {
-			return FindGameobjects.FindClosest(basePosition, Tags, Range);
+		if (domain == null) {
+			// Domain can be set later in some cases
+			return null;
 		}
-		return FindGameobjects.FindClosestEnemy(basePosition, Tags, btt.team, Range);
+		return domain.findTarget();
 	}
 }

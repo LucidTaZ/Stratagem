@@ -23,11 +23,25 @@ public class PlayerState : MonoBehaviour {
 		get { return !IsInOverlayMenu && !IsInVirtualConsole; }
 	}
 
+	public bool IsPlacingStructure {
+		get { return placeStructure != null && placeStructure.IsPlacing; }
+	}
+
+	// Used to display unit names, threat ranges, etc.
+	// Put in a separate getter so it can be easily adapted for different logic
+	public bool ShouldShowTacticalInfo {
+		get { return IsPlacingStructure; }
+	}
+
 	GameObject player;
+	PlaceStructure placeStructure;
 
 	void ensurePlayerReference () {
 		if (player == null) {
 			player = FindGameobjects.FindLocalPlayerObject();
+			if (player != null) {
+				placeStructure = player.GetComponent<PlaceStructure>();
+			}
 		}
 	}
 

@@ -545,10 +545,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ca2811b1fbd3534f9f48a071f1b2015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 40
-  Tags:
-  - Structure
-  - Heart
   CurrentTarget: {fileID: 0}
 --- !u!114 &11425558
 MonoBehaviour:

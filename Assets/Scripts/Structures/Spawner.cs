@@ -22,6 +22,12 @@ public class Spawner : NetworkBehaviour {
 	float cooldownLeft;
 	int itemsExisting = 0;
 
+	KnowsDomain knowsDomain;
+
+	void Awake () {
+		knowsDomain = GetComponent<KnowsDomain>();
+	}
+
 	void Start () {
 		if (SpawnImmediately) {
 			cooldownLeft = 0;
@@ -74,6 +80,13 @@ public class Spawner : NetworkBehaviour {
 		BelongsToTeam childBtt = subject.GetComponent<BelongsToTeam>();
 		if (btt != null && childBtt != null) {
 			childBtt.CopyFrom(btt);
+		}
+
+		if (knowsDomain != null) {
+			FindTarget findTarget = subject.GetComponent<FindTarget>();
+			if (findTarget != null) {
+				findTarget.SetDomain(knowsDomain.Domain);
+			}
 		}
 
 		NetworkServer.Spawn(subject);
