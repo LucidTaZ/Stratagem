@@ -15,6 +15,10 @@ public class PlaceStructure : NetworkBehaviour {
 	const float MAX_DISTANCE = 5f;
 	const float MIN_NORMAL_ALIGNMENT = 0.9f; // Minimum dot product of surface normal and "up"
 
+	public bool IsPlacing {
+		get { return enabled; }
+	}
+
 	void Awake () {
 		btt = GetComponent<BelongsToTeam>();
 		Debug.Assert(btt != null);
@@ -96,7 +100,7 @@ public class PlaceStructure : NetworkBehaviour {
 	void renderBlueprint (Vector3 position, Quaternion rotation) {
 		Matrix4x4 spawnlocationToLocal = Matrix4x4.TRS(position, rotation, Vector3.one);
 
-		foreach (Renderer mr in Subject.GetComponentsInChildren<Renderer>(true)) {
+		foreach (Renderer mr in Subject.GetComponentsInChildren<Renderer>()) {
 			MeshFilter filter;
 			if ((filter = mr.GetComponent<MeshFilter>()) != null) {
 				Mesh mesh = filter.sharedMesh;

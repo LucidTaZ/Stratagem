@@ -4,10 +4,9 @@ using UnityEngine.Networking;
 public class FindTarget : NetworkBehaviour {
 	public GameObject CurrentTarget;
 
-	[SyncVar]
 	TargetDomain domain;
 
-	void Start () {
+	void Awake () {
 		KnowsDomain kd = GetComponent<KnowsDomain>();
 		if (kd != null) {
 			domain = kd.Domain;
@@ -29,6 +28,10 @@ public class FindTarget : NetworkBehaviour {
 	}
 
 	GameObject findNewTarget () {
+		if (domain == null) {
+			// Domain can be set later in some cases
+			return null;
+		}
 		return domain.findTarget();
 	}
 }
