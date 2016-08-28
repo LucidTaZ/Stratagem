@@ -77,6 +77,7 @@ GameObject:
   - 4: {fileID: 441274}
   - 23: {fileID: 2341634}
   - 102: {fileID: 10274052}
+  - 114: {fileID: 11477500}
   m_Layer: 0
   m_Name: Label
   m_TagString: Untagged
@@ -686,6 +687,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Axis: {x: 0, y: -1, z: 0}
   Rate: 90
+--- !u!114 &11477500
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2d57ae58ecfbc340aefadfd889ae2e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11477558
 MonoBehaviour:
   m_ObjectHideFlags: 1
