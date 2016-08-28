@@ -42,6 +42,7 @@ GameObject:
   - 4: {fileID: 463644}
   - 33: {fileID: 3376776}
   - 23: {fileID: 2349724}
+  - 114: {fileID: 11479850}
   m_Layer: 9
   m_Name: Local Model
   m_TagString: Untagged
@@ -451,6 +452,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de190f2e09eaab448a2ec83f54f63e91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11479850
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 112774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdac490aa56bdd4429c69f0633191926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &11482686
