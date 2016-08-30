@@ -16,7 +16,7 @@ public class PlaceStructure : NetworkBehaviour {
 	const float MIN_NORMAL_ALIGNMENT = 0.9f; // Minimum dot product of surface normal and "up"
 
 	bool storedDomainVisuals;
-	MeshAndTransform domainMeshAndTransform; // Store the computed domain visuals, for efficiency
+	GameObject domainIndicator;
 
 	public bool IsPlacing {
 		get { return enabled; }
@@ -40,7 +40,7 @@ public class PlaceStructure : NetworkBehaviour {
 	void disableSelf () {
 		Subject = null;
 		enabled = false;
-		storedDomainVisuals = false;
+		Destroy(domainIndicator);
 	}
 
 	void Update () {
@@ -116,11 +116,12 @@ public class PlaceStructure : NetworkBehaviour {
 		KnowsDomain kd = Subject.GetComponent<KnowsDomain>();
 		if (kd != null) {
 			if (!storedDomainVisuals) {
-				domainMeshAndTransform = kd.GetRangeIndicatorBeforeConstruction();
+				domainIndicator = kd.GetRangeIndicatorBeforeConstruction();
+				domainIndicator.SetActive(true);
 				storedDomainVisuals = true;
 			}
-			Matrix4x4 renderMatrix = buildlocationToLocal * domainMeshAndTransform.transform;
-			Graphics.DrawMesh(domainMeshAndTransform.mesh, renderMatrix, BlueprintMaterial, gameObject.layer, Camera.main);
+			domainIndicator.transform.position = position + new Vector3(0, 0.25f, 0);
+			domainIndicator.transform.rotation = rotation;
 		}
 	}
 }
