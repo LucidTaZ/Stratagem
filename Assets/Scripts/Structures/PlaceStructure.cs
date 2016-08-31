@@ -54,6 +54,9 @@ public class PlaceStructure : NetworkBehaviour {
 			} else {
 				renderBlueprint(position, rotation);
 			}
+		} else if (storedDomainVisuals) {
+			// We don't hit the ground, so hide the indicator again
+			domainIndicator.SetActive(false);
 		}
 	}
 
@@ -117,11 +120,11 @@ public class PlaceStructure : NetworkBehaviour {
 		if (kd != null) {
 			if (!storedDomainVisuals) {
 				domainIndicator = kd.GetRangeIndicatorBeforeConstruction();
-				domainIndicator.SetActive(true);
 				storedDomainVisuals = true;
 			}
 			domainIndicator.transform.position = position + new Vector3(0, 0.25f, 0);
 			domainIndicator.transform.rotation = rotation;
+			domainIndicator.SetActive(true);
 		}
 	}
 }

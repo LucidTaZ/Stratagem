@@ -45,11 +45,17 @@ public class KnowsDomain : MonoBehaviour {
 			Domain.Center.y + indicator.transform.position.y,
 			Domain.Center.z
 		);
-		indicator.transform.localScale = new Vector3(
-			Domain.Range * 2,
-			indicator.transform.localScale.y,
-			Domain.Range * 2
-		);
+		Projector projector = indicator.GetComponentInChildren<Projector>();
+		if (projector != null) {
+			projector.orthographicSize = Domain.Range;
+		} else {
+			// GameObject-based indicator, simply scale
+			indicator.transform.localScale = new Vector3(
+				Domain.Range * 2,
+				indicator.transform.localScale.y,
+				Domain.Range * 2
+			);
+		}
 	}
 
 	void initializeRangeIndicatorColor (GameObject indicator) {
@@ -57,6 +63,11 @@ public class KnowsDomain : MonoBehaviour {
 			Material material = renderer.material;
 			setColorRGBOnly(material, "_Color", Domain.FriendlyTeam.color);
 			material.SetColor("_EmissionColor", Color.Lerp(Color.black, Domain.FriendlyTeam.color, 0.1f));
+		}
+		foreach (Projector projector in indicator.GetComponentsInChildren<Projector>(true)) {
+			Material material = Instantiate(projector.material); // Projectors don't instantiate them themselves, they all share the reference. We could optimize this by having only one instance per team, instead of an instance per structure
+			setColorRGBOnly(material, "_Color", Domain.FriendlyTeam.color);
+			projector.material = material;
 		}
 	}
 
