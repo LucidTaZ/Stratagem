@@ -78,6 +78,7 @@ GameObject:
   - 114: {fileID: 11470712}
   - 114: {fileID: 11453636}
   - 114: {fileID: 11453776}
+  - 114: {fileID: 11476840}
   m_Layer: 0
   m_Name: Offender Spawner
   m_TagString: Structure
@@ -294,6 +295,18 @@ MonoBehaviour:
     i15: 248
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &11476840
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 175264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98cc2135e6f2d0842bd9c011d17d6669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Radius: 0.5
 --- !u!114 &11492492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -406,6 +419,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_ReceiveShadows
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Radius
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

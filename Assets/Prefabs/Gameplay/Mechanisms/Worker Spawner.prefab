@@ -48,6 +48,7 @@ GameObject:
   - 114: {fileID: 11479944}
   - 114: {fileID: 11474310}
   - 114: {fileID: 11461336}
+  - 114: {fileID: 11442576}
   m_Layer: 0
   m_Name: Worker Spawner
   m_TagString: Structure
@@ -310,6 +311,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Items:
   - Name: Zeny
+--- !u!114 &11442576
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98cc2135e6f2d0842bd9c011d17d6669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Radius: 0.5
 --- !u!114 &11461336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -447,6 +460,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_ReceiveShadows
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Radius
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

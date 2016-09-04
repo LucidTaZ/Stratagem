@@ -77,6 +77,11 @@ public class PlaceStructure : NetworkBehaviour {
 
 		position = hitInfo.point;
 		rotation = transform.rotation;
+
+		ForbidStructurePlacement fsp = Subject.GetComponent<ForbidStructurePlacement>();
+		if (fsp != null && !fsp.CanPlace(position)) {
+			return false;
+		}
 		return true;
 	}
 

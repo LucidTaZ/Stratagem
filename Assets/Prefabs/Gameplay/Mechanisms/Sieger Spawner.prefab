@@ -47,6 +47,7 @@ GameObject:
   - 114: {fileID: 11406460}
   - 114: {fileID: 11475332}
   - 114: {fileID: 11455750}
+  - 114: {fileID: 11464842}
   m_Layer: 0
   m_Name: Sieger Spawner
   m_TagString: Structure
@@ -288,6 +289,18 @@ MonoBehaviour:
       name: 
       color: {r: 0, g: 0, b: 0, a: 0}
   RangeIndicator: {fileID: 196778}
+--- !u!114 &11464842
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 146870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98cc2135e6f2d0842bd9c011d17d6669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Radius: 0.5
 --- !u!114 &11475332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -379,6 +392,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_CastShadows
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Radius
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
