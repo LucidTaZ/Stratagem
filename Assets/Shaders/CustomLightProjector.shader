@@ -11,7 +11,7 @@
 		Pass {
 			ZWrite Off
 			ColorMask RGB
-			Blend OneMinusDstColor One
+			Blend DstAlpha One
 			Offset -1, -1
 	
 			CGPROGRAM

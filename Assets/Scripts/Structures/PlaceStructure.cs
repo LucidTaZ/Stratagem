@@ -41,6 +41,7 @@ public class PlaceStructure : NetworkBehaviour {
 		Subject = null;
 		enabled = false;
 		Destroy(domainIndicator);
+		storedDomainVisuals = false;
 	}
 
 	void Update () {
