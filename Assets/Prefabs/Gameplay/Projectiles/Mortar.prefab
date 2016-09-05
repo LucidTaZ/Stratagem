@@ -19,6 +19,7 @@ GameObject:
   - 114: {fileID: 11450738}
   - 114: {fileID: 11450954}
   - 114: {fileID: 11419346}
+  - 114: {fileID: 11437372}
   m_Layer: 10
   m_Name: Mortar
   m_TagString: Untagged
@@ -206,6 +207,18 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &11437372
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 145714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0aae4d42cc096a44a4c3b10e995e4d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EffectToSpawn: {fileID: 194570, guid: 2f7352c173d0c264ebc4c542277db08a, type: 2}
 --- !u!114 &11450738
 MonoBehaviour:
   m_ObjectHideFlags: 1
