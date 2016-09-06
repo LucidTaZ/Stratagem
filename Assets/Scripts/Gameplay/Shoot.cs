@@ -33,24 +33,38 @@ public class Shoot : NetworkBehaviour {
 	void Update () {
 		if (isPlayer && hasAuthority && Input.GetButton("Shoot") && playerState.CanShoot) {
 			Vector3 direction = Camera.main.transform.rotation * new Vector3(0f, 0f, 2f);
-			CmdPlayerShoot(direction);
+			TryToShootAtDirection(direction);
 		}
-	}
-
-	[Command]
-	public void CmdPlayerShoot (Vector3 direction) {
-		TryToShootAtDirection(direction);
 	}
 
 	public void TryToShootAtDirection (Vector3 direction) {
 		if (cooldownTimer < Time.time) {
-			doShootAtDirection(direction);
+			CmdShootAtDirection(direction, ClientScene.readyConnection.connectionId);
+			shootAtDirection(direction);
 			cooldownTimer = Time.time + Cooldown;
-			setNextEjectionPoint();
 		}
 	}
 
-	void doShootAtDirection (Vector3 direction) {
+	[Command(channel=2)] // AllCostDelivery
+	public void CmdShootAtDirection (Vector3 direction, int connectionId) {
+		RpcAnyPlayerShoots(direction, connectionId);
+	}
+
+	[ClientRpc(channel=2)] // AllCostDelivery
+	public void RpcAnyPlayerShoots (Vector3 direction, int connectionId) {
+		if (connectionId == ClientScene.readyConnection.connectionId) {
+			// Ignore own message, since we already performed the local shot when sending the message
+			return;
+		}
+		shootAtDirection(direction);
+	}
+
+	void shootAtDirection (Vector3 direction) {
+		sendProjectile(direction);
+		setNextEjectionPoint();
+	}
+
+	void sendProjectile (Vector3 direction) {
 		GameObject newProjectile = Instantiate(Projectile);
 		Vector3 ejectionPoint = GetCurrentEjectionPoint();
 		newProjectile.transform.position = ejectionPoint;
@@ -63,8 +77,6 @@ public class Shoot : NetworkBehaviour {
 		} else {
 			Debug.LogWarning("Firing a projectile that deals no damage");
 		}
-
-		NetworkServer.Spawn(newProjectile);
 	}
 
 	public Vector3 GetCurrentEjectionPoint () {

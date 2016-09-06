@@ -269,11 +269,9 @@ MonoBehaviour:
   - {fileID: 162476, guid: 96e95bf23d48fa04881b962dd4fe9013, type: 2}
   - {fileID: 146870, guid: c4780737eac090948ae141d7df037787, type: 2}
   - {fileID: 145314, guid: 354492560efb05e49bb20ab7f5b66a78, type: 2}
-  - {fileID: 112718, guid: 19405c38a9c623d42bd465fef471ad9c, type: 2}
-  - {fileID: 145714, guid: a524cf56dbe5b324487af30bee023407, type: 2}
   - {fileID: 194308, guid: d6be1885e17be154dab340c9d970cae7, type: 2}
   - {fileID: 196500, guid: 42f165a36ebe834479fc157f395677c1, type: 2}
-  m_CustomConfig: 0
+  m_CustomConfig: 1
   m_MaxConnections: 4
   m_ConnectionConfig:
     m_PacketSize: 1500
@@ -301,10 +299,10 @@ MonoBehaviour:
     m_ReactorMaximumReceivedMessages: 1024
     m_ReactorMaximumSentMessages: 1024
     m_MaxPacketSize: 2000
-  m_Channels: 0500000000000000
+  m_Channels: 050000000000000008000000
   m_UseWebSockets: 0
   m_UseSimulator: 0
-  m_SimulatedLatency: 1
+  m_SimulatedLatency: 50
   m_PacketLossPercentage: 0
   m_MatchHost: mm.unet.unity3d.com
   m_MatchPort: 443
@@ -641,11 +639,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22433864, guid: 7b9124ae28979cc499743a6a45ada786, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22451622, guid: 7b9124ae28979cc499743a6a45ada786, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11464670, guid: 7b9124ae28979cc499743a6a45ada786, type: 2}
       propertyPath: m_MinValue

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 
-public class DealsDamage : NetworkBehaviour {
+public class DealsDamage : MonoBehaviour {
 	public int Damage = 1;
 
 	public float SecondsBetweenTicks = 1.0f;
@@ -38,7 +38,7 @@ public class DealsDamage : NetworkBehaviour {
 	}
 
 	void dealDamageIfApplicable (GameObject other) {
-		if (!hasAuthority) {
+		if (!NetworkServer.active) {
 			return;
 		}
 		Hitpoints hitpoints;

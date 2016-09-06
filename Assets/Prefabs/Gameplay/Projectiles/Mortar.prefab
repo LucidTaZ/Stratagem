@@ -17,8 +17,6 @@ GameObject:
   - 114: {fileID: 11468892}
   - 82: {fileID: 8248108}
   - 114: {fileID: 11450738}
-  - 114: {fileID: 11450954}
-  - 114: {fileID: 11419346}
   - 114: {fileID: 11437372}
   m_Layer: 10
   m_Name: Mortar
@@ -187,26 +185,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimeToLive: 1
---- !u!114 &11419346
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 145714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TransformSyncMode: 3
-  m_SendInterval: 0.04761905
-  m_SyncRotationAxis: 0
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
 --- !u!114 &11437372
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,38 +212,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 595bf57d3f7c5124cac573ef703f249f, type: 3}
   - {fileID: 8300000, guid: 7295cc96dfda9d942b912cb507095f82, type: 3}
   - {fileID: 8300000, guid: a9037452eef799847b56d7972342d9eb, type: 3}
---- !u!114 &11450954
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 145714}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 165
-    i1: 36
-    i2: 207
-    i3: 86
-    i4: 219
-    i5: 229
-    i6: 179
-    i7: 36
-    i8: 72
-    i9: 122
-    i10: 243
-    i11: 11
-    i12: 238
-    i13: 2
-    i14: 52
-    i15: 7
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
 --- !u!114 &11468892
 MonoBehaviour:
   m_ObjectHideFlags: 1

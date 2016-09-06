@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.Networking;
 
-public class Despawn : NetworkBehaviour {
+public class Despawn : MonoBehaviour {
 
 	public float TimeToLive;
 	float DeathTime;
@@ -14,10 +13,6 @@ public class Despawn : NetworkBehaviour {
 		if (Time.time < DeathTime) {
 			return;
 		}
-		Debug.Assert(!hasAuthority || NetworkServer.active);
-		if (!hasAuthority) {
-			return;
-		}
-		NetworkServer.Destroy(gameObject);
+		Destroy(gameObject);
 	}
 }
