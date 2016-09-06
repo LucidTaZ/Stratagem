@@ -68,9 +68,7 @@ public class Spawner : NetworkBehaviour {
 	}
 
 	void PerformSpawn () {
-		GameObject subject = Instantiate(Subject);
-		subject.transform.position = SpawnLocation.position;
-		subject.transform.rotation = SpawnLocation.rotation;
+		GameObject subject = (GameObject)Instantiate(Subject, SpawnLocation.position, SpawnLocation.rotation);
 
 		Spawnable spawnable = subject.GetComponent<Spawnable>();
 		if (spawnable != null) {
