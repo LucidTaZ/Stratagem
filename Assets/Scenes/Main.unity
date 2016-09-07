@@ -2373,8 +2373,6 @@ MonoBehaviour:
   - {fileID: 179946, guid: abeea01b80185c749a100895271c67c1, type: 2}
   - {fileID: 146870, guid: c4780737eac090948ae141d7df037787, type: 2}
   - {fileID: 145314, guid: 354492560efb05e49bb20ab7f5b66a78, type: 2}
-  - {fileID: 112718, guid: 19405c38a9c623d42bd465fef471ad9c, type: 2}
-  - {fileID: 145714, guid: a524cf56dbe5b324487af30bee023407, type: 2}
   - {fileID: 194308, guid: d6be1885e17be154dab340c9d970cae7, type: 2}
   - {fileID: 196500, guid: 42f165a36ebe834479fc157f395677c1, type: 2}
   m_CustomConfig: 0

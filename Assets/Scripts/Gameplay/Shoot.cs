@@ -39,7 +39,7 @@ public class Shoot : NetworkBehaviour {
 
 	public void TryToShootAtDirection (Vector3 direction) {
 		if (cooldownTimer < Time.time) {
-			CmdShootAtDirection(direction, ClientScene.readyConnection.connectionId);
+			CmdShootAtDirection(direction, NetworkManager.singleton.client.connection.connectionId);
 			shootAtDirection(direction);
 			cooldownTimer = Time.time + Cooldown;
 		}

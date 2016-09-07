@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 479006}
   - 114: {fileID: 11444920}
   - 114: {fileID: 11431070}
-  - 114: {fileID: 11407934}
   m_Layer: 0
   m_Name: Team Console
   m_TagString: Untagged
@@ -477,38 +476,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 800, y: 600, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &11407934
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 103358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SceneId:
-    m_Value: 0
-  m_AssetId:
-    i0: 123
-    i1: 145
-    i2: 36
-    i3: 174
-    i4: 40
-    i5: 151
-    i6: 156
-    i7: 196
-    i8: 153
-    i9: 116
-    i10: 58
-    i11: 106
-    i12: 69
-    i13: 173
-    i14: 167
-    i15: 134
-  m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
 --- !u!114 &11411986
 MonoBehaviour:
   m_ObjectHideFlags: 1
