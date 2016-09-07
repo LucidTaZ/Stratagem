@@ -715,6 +715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ApproachDistanceMin: 5
+  FollowDistanceMax: 20
 --- !u!136 &13603602
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -798,6 +799,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: Initial
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: FollowDistanceMax
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

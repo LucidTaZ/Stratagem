@@ -42,7 +42,7 @@ public class DealsDamage : MonoBehaviour {
 			return;
 		}
 		Hitpoints hitpoints;
-		if ((hitpoints = other.GetComponent<Hitpoints>()) != null) {
+		if ((hitpoints = other.GetComponent<Hitpoints>()) != null) { // TODO: Make certain colliders "invisible" to this search, for example the resource dropoff of the worker spawner. (Make use of the fact whether we are called from a trigger or not..?)
 			BelongsToTeam btt = other.GetComponent<BelongsToTeam>();
 			if (FriendlyFire || btt == null || !shotByTeam.IsFriendsWith(btt.team)) {
 				dealDamageByTickTime(hitpoints);

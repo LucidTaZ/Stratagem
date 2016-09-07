@@ -547,6 +547,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ApproachDistanceMin: 5
+  FollowDistanceMax: 30
 --- !u!114 &11407812
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -786,6 +787,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: Tags.Array.data[4]
       value: Heart
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: FollowDistanceMax
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

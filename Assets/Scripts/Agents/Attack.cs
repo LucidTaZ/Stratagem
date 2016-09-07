@@ -22,26 +22,31 @@ public class Attack : NetworkBehaviour {
 		if (!hasAuthority) {
 			return;
 		}
-		if (findTarget.CurrentTarget != null) {
+		if (findTarget.HasTarget()) {
 			bool closeEnough = (findTarget.CurrentTarget.transform.position - transform.position).sqrMagnitude < shootingRangeMaxSq;
-			if (closeEnough && !shoot.IsOnCooldown()) {
-				Vector3 direction = aim();
-				tryToAttack(direction);
+			if (closeEnough) {
+				if (!shoot.IsOnCooldown()) {
+					Vector3 direction = aim();
+					tryToAttack(direction);
+				}
+				findTarget.VoteKeepTarget();
 			} else {
-				findTarget.ForgetCurrentTarget();
+				// We don't mind if the target is dropped now in favor of another one
+				findTarget.VoteForgetTarget();
 			}
 		}
 	}
 
 	Vector3 aim () {
-		Collider targetCollider = findTarget.CurrentTarget.GetComponent<Collider>();
+		// Find any collider (target can have multiple) to shoot at. We may refactor this to intelligently select one.
+		Collider targetCollider = findTarget.CurrentTarget.GetComponentInChildren<Collider>();
 
-		// Adjust for the fact that the bullet leaves us not from our origin (Should get this from Shoot script?)
-		Vector3 ejectionPoint = shoot.GetCurrentEjectionPoint();
+		// Adjust for the fact that the bullet leaves us not from our origin
+		Transform ejectionPoint = shoot.GetCurrentEjectionPoint();
 
 		// Find the point we want to shoot
-		Vector3 closestPoint = targetCollider.ClosestPointOnBounds(ejectionPoint);
-		Vector3 positionDifference = closestPoint - ejectionPoint;
+		Vector3 closestPoint = targetCollider.ClosestPointOnBounds(ejectionPoint.position);
+		Vector3 positionDifference = closestPoint - ejectionPoint.position;
 
 		// Adjust for gravity of the bullet
 		Vector3 gravityAdjustment = (Vector3.up * 1.875f / shoot.Velocity) * positionDifference.magnitude; // Empirically chosen
