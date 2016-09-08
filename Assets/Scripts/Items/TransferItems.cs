@@ -5,6 +5,10 @@ using UnityEngine.Networking;
 public class TransferItems : NetworkBehaviour {
 	public ItemIdentifier[] Items;
 
+	public float Bandwidth = Mathf.Infinity; // Number of items per second
+	float secondsPerItem;
+	float nextTransferTime;
+
 	Inventory own;
 	Inventory target;
 
@@ -16,6 +20,8 @@ public class TransferItems : NetworkBehaviour {
 
 		btt = GetComponent<BelongsToTeam>();
 		Debug.Assert(btt != null);
+
+		secondsPerItem = 1.0f / Bandwidth;
 	}
 
 	void FixedUpdate () {
@@ -28,9 +34,10 @@ public class TransferItems : NetworkBehaviour {
 			return;
 		}
 		foreach (ItemIdentifier itemIdentifier in Items) {
-			while (own.Contains(itemIdentifier)) {
+			while (own.Contains(itemIdentifier) && nextTransferTime <= Time.time) {
 				Item item = own.Take(itemIdentifier);
 				target.Add(item);
+				nextTransferTime = Time.time + secondsPerItem;
 			}
 		}
 	}

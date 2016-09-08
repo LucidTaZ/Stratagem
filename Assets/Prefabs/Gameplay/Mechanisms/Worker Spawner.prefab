@@ -355,6 +355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1608d9cc523afa340aae81c5f769afe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AllowCollisionsInChildren: 0
   Initial: 15
 --- !u!114 &11473120
 MonoBehaviour:
@@ -385,6 +386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Items:
   - Name: Zeny
+  Bandwidth: 0.5
 --- !u!114 &11479944
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -463,6 +465,10 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Bandwidth
       value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
