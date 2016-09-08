@@ -110,6 +110,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &160092
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 411648}
+  - 114: {fileID: 11445586}
+  - 114: {fileID: 11460802}
+  m_Layer: 0
+  m_Name: Coin Stack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &160220
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,6 +245,7 @@ Transform:
   - {fileID: 450646}
   - {fileID: 411136}
   - {fileID: 408898}
+  - {fileID: 411648}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &408898
@@ -256,6 +274,18 @@ Transform:
   - {fileID: 497664}
   m_Father: {fileID: 408448}
   m_RootOrder: 2
+--- !u!4 &411648
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160092}
+  m_LocalRotation: {x: 0, y: -0.28582102, z: 0, w: 0.95828307}
+  m_LocalPosition: {x: -1.83, y: 0.25, z: 1.05}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 408448}
+  m_RootOrder: 4
 --- !u!4 &450646
 Transform:
   m_ObjectHideFlags: 1
@@ -537,6 +567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1608d9cc523afa340aae81c5f769afe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AllowCollisionsInChildren: 0
   Initial: 50
 --- !u!114 &11414404
 MonoBehaviour:
@@ -660,6 +691,19 @@ MonoBehaviour:
   - Identifier:
       Name: Defense Tower
     Cost: 100
+--- !u!114 &11445586
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66f93ef0b624dca45bad3d646b023cba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Count: 0
+  ItemModel: {fileID: 138226, guid: d57b92450e15c264fac27bce994b7e46, type: 2}
 --- !u!114 &11451998
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -675,6 +719,19 @@ MonoBehaviour:
     id: 1
     name: TaZ
     color: {r: 0.38039216, g: 0.5372549, b: 1, a: 0}
+--- !u!114 &11460802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 160092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a925591b2ed4c54097abe59bb0f3298, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemIdToWatch:
+    Name: Zeny
 --- !u!114 &11464124
 MonoBehaviour:
   m_ObjectHideFlags: 1
