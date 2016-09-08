@@ -14,8 +14,8 @@ public class BelongsToTeam : NetworkBehaviour {
 	}
 
 	void changeMaterialColor () {
-		foreach (MeshRenderer renderer in GetComponentsInChildren<MeshRenderer>(true)) {
-			if (renderer.gameObject.GetComponent<TextMesh>() == null) { // Prevent coloring the text, somehow making it invisible
+		foreach (Renderer renderer in GetComponentsInChildren<Renderer>(true)) {
+			if (renderer.GetComponent<TextMesh>() == null) { // Prevent coloring the text, somehow making it invisible
 				renderer.material.color = team.color;
 			}
 		}

@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
+using System.Collections.Generic;
 
-// Usage: place on Player object but disabled. Enable it to go into "placement mode"
 public class PlaceStructure : NetworkBehaviour {
+	// Usage: place on Player object but disabled. Enable it to go into "placement mode"
+
 	public GameObject Subject;
 
 	Material BlueprintMaterial;
@@ -113,13 +115,9 @@ public class PlaceStructure : NetworkBehaviour {
 	void renderBlueprint (Vector3 position, Quaternion rotation) {
 		Matrix4x4 buildlocationToLocal = Matrix4x4.TRS(position, rotation, Vector3.one);
 
-		foreach (Renderer mr in Subject.GetComponentsInChildren<Renderer>()) {
-			MeshFilter filter;
-			if ((filter = mr.GetComponent<MeshFilter>()) != null) {
-				Mesh mesh = filter.sharedMesh;
-				Matrix4x4 meshrendererToWorld = buildlocationToLocal * mr.transform.localToWorldMatrix;
-				Graphics.DrawMesh(mesh, meshrendererToWorld, BlueprintMaterial, gameObject.layer, Camera.main);
-			}
+		foreach (MeshAndTransform mat in findMeshes(Subject)) {
+			Matrix4x4 meshrendererToWorld = buildlocationToLocal * mat.transform;
+			Graphics.DrawMesh(mat.mesh, meshrendererToWorld, BlueprintMaterial, gameObject.layer, Camera.main);
 		}
 
 		KnowsDomain kd = Subject.GetComponent<KnowsDomain>();
@@ -132,5 +130,23 @@ public class PlaceStructure : NetworkBehaviour {
 			domainIndicator.transform.rotation = rotation;
 			domainIndicator.SetActive(true);
 		}
+	}
+
+	static List<MeshAndTransform> findMeshes (GameObject subject) {
+		List<MeshAndTransform> result = new List<MeshAndTransform>();
+
+		foreach (Renderer mr in subject.GetComponentsInChildren<Renderer>()) {
+			MeshFilter filter;
+			if ((filter = mr.GetComponent<MeshFilter>()) != null) {
+				result.Add(new MeshAndTransform(filter.sharedMesh, mr.transform.localToWorldMatrix));
+			}
+		}
+
+		// Skinned MeshRenderer works differently:
+		foreach (SkinnedMeshRenderer mr in subject.GetComponentsInChildren<SkinnedMeshRenderer>()) {
+			result.Add(new MeshAndTransform(mr.sharedMesh, mr.transform.localToWorldMatrix));
+		}
+
+		return result;
 	}
 }
