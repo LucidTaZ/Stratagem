@@ -3,6 +3,7 @@ using UnityEngine.Networking;
 
 public class Hitpoints : NetworkBehaviour {
 	public bool AllowCollisionsInChildren = false;
+	public bool AllowCollisionsInTriggers = true;
 
 	public int Initial = 5;
 

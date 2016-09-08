@@ -26,23 +26,26 @@ public class DealsDamage : MonoBehaviour {
 	}
 
 	void OnCollisionEnter (Collision collision) {
-		dealDamageIfApplicable(collision.gameObject);
+		dealDamageIfApplicable(collision.gameObject, false);
 	}
 
 	void OnTriggerEnter (Collider other) {
-		dealDamageIfApplicable(other.gameObject);
+		dealDamageIfApplicable(other.gameObject, true);
 	}
 
 	void OnTriggerStay (Collider other) {
-		dealDamageIfApplicable(other.gameObject);
+		dealDamageIfApplicable(other.gameObject, true);
 	}
 
-	void dealDamageIfApplicable (GameObject other) {
+	void dealDamageIfApplicable (GameObject other, bool fromTrigger) {
 		if (!NetworkServer.active) {
 			return;
 		}
 		Hitpoints hitpoints = Hitpoints.FindHitpointsComponent(other);
 		if (hitpoints != null) {
+			if (fromTrigger && !hitpoints.AllowCollisionsInTriggers) {
+				return;
+			}
 			BelongsToTeam btt = hitpoints.GetComponent<BelongsToTeam>();
 			if (FriendlyFire || btt == null || !shotByTeam.IsFriendsWith(btt.team)) {
 				dealDamageByTickTime(hitpoints);
