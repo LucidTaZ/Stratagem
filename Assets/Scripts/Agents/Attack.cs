@@ -39,7 +39,7 @@ public class Attack : NetworkBehaviour {
 
 	Vector3 aim () {
 		// Find any collider (target can have multiple) to shoot at. We may refactor this to intelligently select one.
-		Collider targetCollider = findTarget.CurrentTarget.GetComponentInChildren<Collider>();
+		Collider targetCollider = selectTargetCollider(findTarget.CurrentTarget);
 
 		// Adjust for the fact that the bullet leaves us not from our origin
 		Transform ejectionPoint = shoot.GetCurrentEjectionPoint();
@@ -52,6 +52,15 @@ public class Attack : NetworkBehaviour {
 		Vector3 gravityAdjustment = (Vector3.up * 1.875f / shoot.Velocity) * positionDifference.magnitude; // Empirically chosen
 
 		return (positionDifference + gravityAdjustment).normalized;
+	}
+
+	Collider selectTargetCollider (GameObject target) {
+		Hitpoints hitpoints = target.GetComponent<Hitpoints>();
+		Debug.Assert(hitpoints != null);
+		if (hitpoints.AllowCollisionsInChildren) {
+			return target.GetComponentInChildren<Collider>();
+		}
+		return target.GetComponent<Collider>();
 	}
 
 	void tryToAttack (Vector3 direction) {

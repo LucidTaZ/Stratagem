@@ -2,6 +2,7 @@
 using UnityEngine.Networking;
 
 public class Hitpoints : NetworkBehaviour {
+	public bool AllowCollisionsInChildren = false;
 
 	public int Initial = 5;
 
@@ -34,5 +35,22 @@ public class Hitpoints : NetworkBehaviour {
 			// Only for the local player
 			Camera.main.GetComponent<CameraBehavior>().Detach();
 		}
+	}
+
+	public static Hitpoints FindHitpointsComponent (GameObject hitGameObject) {
+		// Find the Hitpoints component of a hit gameobject
+		// It may be located on a parent piece (or in the future perhaps on a child piece)
+
+		Hitpoints hitpoints = hitGameObject.GetComponent<Hitpoints>();
+		if (hitpoints != null) {
+			return hitpoints;
+		}
+		Hitpoints[] potentialParentHitpoints = hitGameObject.GetComponentsInParent<Hitpoints>();
+		foreach (Hitpoints parentHitpoints in potentialParentHitpoints) {
+			if (parentHitpoints.AllowCollisionsInChildren) {
+				return parentHitpoints;
+			}
+		}
+		return null;
 	}
 }
