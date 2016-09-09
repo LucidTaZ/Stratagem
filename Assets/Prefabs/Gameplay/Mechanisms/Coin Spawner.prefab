@@ -11,7 +11,7 @@ GameObject:
   - 114: {fileID: 11437412}
   - 114: {fileID: 11400200}
   - 114: {fileID: 11432736}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Coin Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ GameObject:
   - 33: {fileID: 3338904}
   - 65: {fileID: 6574700}
   - 23: {fileID: 2367426}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Plateau
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 436362}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Spawn Location
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -212,6 +212,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: Radius
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

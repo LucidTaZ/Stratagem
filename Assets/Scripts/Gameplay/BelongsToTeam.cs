@@ -16,9 +16,22 @@ public class BelongsToTeam : NetworkBehaviour {
 	void changeMaterialColor () {
 		foreach (Renderer renderer in GetComponentsInChildren<Renderer>(true)) {
 			if (renderer.GetComponent<TextMesh>() == null) { // Prevent coloring the text, somehow making it invisible
-				renderer.material.color = team.color;
+				setColorKeepingAlpha(renderer.material, team.color);
+
 			}
 		}
+	}
+
+	void setColorKeepingAlpha (Material material, Color color) {
+		if (!material.HasProperty("_Color")) {
+			return;
+		}
+		material.color = new Color(
+			color.r,
+			color.g,
+			color.b,
+			material.color.a
+		);
 	}
 
 	public void UpdateTeamColor (Color color) {

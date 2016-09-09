@@ -4,17 +4,19 @@ using UnityEngine.Networking;
 public class AttachCamera : NetworkBehaviour {
 	public Transform AttachmentPoint;
 
-	CameraBehavior cb;
+	CameraBehavior[] cbs;
 
 	bool quitting = false;
 
 	void Awake () {
-		cb = Camera.main.GetComponent<CameraBehavior>();
-		Debug.Assert(cb != null);
+		cbs = GameObject.FindObjectsOfType<CameraBehavior>();
+		Debug.Assert(cbs.Length > 0);
 	}
 
 	public void PerformAttach () {
-		cb.AttachTo(AttachmentPoint);
+		foreach (CameraBehavior cb in cbs) {
+			cb.AttachTo(AttachmentPoint);
+		}
 	}
 
 	void OnApplicationQuit () {
@@ -29,6 +31,8 @@ public class AttachCamera : NetworkBehaviour {
 	}
 
 	void detach () {
-		cb.Detach();
+		foreach (CameraBehavior cb in cbs) {
+			cb.Detach();
+		}
 	}
 }

@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 437426}
   - 198: {fileID: 19897312}
   - 199: {fileID: 19915908}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 494812}
   - 119: {fileID: 11957724}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Graphic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - 4: {fileID: 451648}
   - 198: {fileID: 19890458}
   - 199: {fileID: 19916928}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 440318}
   - 114: {fileID: 11476412}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Impact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3250,6 +3250,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: ClampVelocityModule.dampen
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

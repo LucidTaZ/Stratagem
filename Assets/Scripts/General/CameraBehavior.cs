@@ -3,6 +3,8 @@ using System.Collections;
 
 public class CameraBehavior : MonoBehaviour {
 	public float ResetTime = 1f;
+	public bool FollowRotation = true;
+	public bool FixAltitude = false;
 
 	Vector3 initialPosition;
 	Quaternion initialRotation;
@@ -10,6 +12,19 @@ public class CameraBehavior : MonoBehaviour {
 	void Start () {
 		initialPosition = transform.position;
 		initialRotation = transform.rotation;
+	}
+
+	void LateUpdate () {
+		if (!FollowRotation) {
+			transform.rotation = initialRotation;
+		}
+		if (FixAltitude) {
+			transform.position = new Vector3(
+				transform.position.x,
+				initialPosition.y,
+				transform.position.z
+			);
+		}
 	}
 
 	public void AttachTo (Transform attachmentPoint) {
