@@ -4,8 +4,8 @@ using UnityEngine.Networking;
 public class FindTarget : NetworkBehaviour {
 	public enum Mode {
 		NONE, // To disable target finding, e.g. when the worker inventory is full
-		CLOSEST_TO_DOMAIN
-		// CLOSEST_TO_SELF (For later use)
+		CLOSEST_TO_DOMAIN,
+		CLOSEST_TO_SELF
 	}
 
 	public GameObject CurrentTarget;
@@ -82,8 +82,13 @@ public class FindTarget : NetworkBehaviour {
 		}
 		if (TargetingMode == Mode.NONE) {
 			return null;
+		} else if (TargetingMode == Mode.CLOSEST_TO_DOMAIN) {
+			return domain.findTarget();
+		} else if (TargetingMode == Mode.CLOSEST_TO_SELF) {
+			return domain.findTarget(transform.position);
 		}
-		return domain.findTarget();
+		Debug.LogError("Cannot handle TargetingMode " + TargetingMode);
+		return null;
 	}
 
 	[ClientRpc]

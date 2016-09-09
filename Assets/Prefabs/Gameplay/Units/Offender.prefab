@@ -571,6 +571,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1608d9cc523afa340aae81c5f769afe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AllowCollisionsInChildren: 0
+  AllowCollisionsInTriggers: 1
   Initial: 8
 --- !u!114 &11416784
 MonoBehaviour:
@@ -647,6 +649,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentTarget: {fileID: 0}
+  TargetingMode: 2
 --- !u!114 &11449280
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -716,6 +719,7 @@ MonoBehaviour:
   - {fileID: 441802}
   Velocity: 25
   Cooldown: 0.5
+  MaxDeviationAngle: 180
 --- !u!136 &13688216
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -791,6 +795,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: FollowDistanceMax
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: TargetingMode
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
