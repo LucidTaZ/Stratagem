@@ -39,7 +39,7 @@ public class AcceptItems : NetworkBehaviour {
 	}
 
 	void take (Inventory otherInventory, ItemIdentifier itemIdentifier) {
-		while (otherInventory.Contains(itemIdentifier)) {
+		while (otherInventory.Contains(itemIdentifier) && inventory.HasSpace()) {
 			Item item = otherInventory.Take(itemIdentifier);
 			inventory.Add(item);
 		}

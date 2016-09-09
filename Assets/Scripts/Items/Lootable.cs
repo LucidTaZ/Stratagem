@@ -8,8 +8,8 @@ public class Lootable : NetworkBehaviour {
 		if (!hasAuthority) {
 			return;
 		}
-		Inventory inventory;
-		if ((inventory = other.GetComponent<Inventory>()) != null) {
+		Inventory inventory = other.GetComponent<Inventory>();
+		if (inventory != null && inventory.HasSpace()) {
 			PerformLoot(inventory);
 		}
 	}

@@ -36,6 +36,7 @@ GameObject:
   - 114: {fileID: 11451392}
   - 114: {fileID: 11471528}
   - 114: {fileID: 11489220}
+  - 114: {fileID: 11408836}
   m_Layer: 0
   m_Name: Worker
   m_TagString: Worker
@@ -367,6 +368,17 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4294967295
+--- !u!114 &11408836
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 135726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e760ce8f764a93549a1855eeb47937e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11418880
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -421,6 +433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 973647b2058d21045a6ec7579ed0d74c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Capacity: 2
 --- !u!114 &11469774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -433,6 +446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentTarget: {fileID: 0}
+  TargetingMode: 1
 --- !u!114 &11471528
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -476,6 +490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ApproachDistanceMin: 0
+  FollowDistanceMax: Infinity
 --- !u!114 &11489220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -502,6 +517,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1608d9cc523afa340aae81c5f769afe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AllowCollisionsInChildren: 0
+  AllowCollisionsInTriggers: 1
   Initial: 5
 --- !u!114 &11496048
 MonoBehaviour:
@@ -573,6 +590,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_TransformSyncMode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: Capacity
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

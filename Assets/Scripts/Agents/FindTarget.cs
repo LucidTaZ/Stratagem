@@ -2,7 +2,15 @@
 using UnityEngine.Networking;
 
 public class FindTarget : NetworkBehaviour {
+	public enum Mode {
+		NONE, // To disable target finding, e.g. when the worker inventory is full
+		CLOSEST_TO_DOMAIN
+		// CLOSEST_TO_SELF (For later use)
+	}
+
 	public GameObject CurrentTarget;
+
+	public Mode TargetingMode = Mode.CLOSEST_TO_DOMAIN;
 
 	TargetDomain domain;
 
@@ -32,6 +40,10 @@ public class FindTarget : NetworkBehaviour {
 	// Inform the script that the target should be kept
 	public void VoteKeepTarget () {
 		voteKeepTarget = true;
+	}
+
+	public void ForceForgetTarget () {
+		forgetCurrentTarget();
 	}
 
 	void Update () {
@@ -66,6 +78,9 @@ public class FindTarget : NetworkBehaviour {
 	GameObject findNewTarget () {
 		if (domain == null) {
 			// Domain can be set later in some cases
+			return null;
+		}
+		if (TargetingMode == Mode.NONE) {
 			return null;
 		}
 		return domain.findTarget();

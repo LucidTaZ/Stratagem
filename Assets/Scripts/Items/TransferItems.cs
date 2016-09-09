@@ -34,7 +34,7 @@ public class TransferItems : NetworkBehaviour {
 			return;
 		}
 		foreach (ItemIdentifier itemIdentifier in Items) {
-			while (own.Contains(itemIdentifier) && nextTransferTime <= Time.time) {
+			while (own.Contains(itemIdentifier) && nextTransferTime <= Time.time && target.HasSpace()) {
 				Item item = own.Take(itemIdentifier);
 				target.Add(item);
 				nextTransferTime = Time.time + secondsPerItem;

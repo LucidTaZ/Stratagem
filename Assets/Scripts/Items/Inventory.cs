@@ -8,7 +8,17 @@ public class Inventory : NetworkBehaviour {
 
 	public ItemCollection Contents = new ItemCollection();
 
+	public int Capacity = int.MaxValue;
+
+	public bool HasSpace (int delta = 1) {
+		return Capacity >= Contents.Count + delta;
+	}
+
 	public void Add (Item item) {
+		if (Contents.Count >= Capacity) {
+			Debug.LogError("Inventory full, use HasSpace() before trying to add! Item not added.");
+			return;
+		}
 		Contents.Add(new ItemIdentifier(item.Name));
 	}
 
