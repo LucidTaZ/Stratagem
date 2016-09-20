@@ -33,8 +33,7 @@ public class Shoot : NetworkBehaviour {
 	void Awake () {
 		isPlayer = CompareTag("Player");
 		if (isPlayer) {
-			playerState = GameObject.FindGameObjectWithTag("PlayerState").GetComponent<PlayerState>();
-			Debug.Assert(playerState != null);
+			playerState = PlayerState.Instance();
 		}
 
 		Debug.Assert(EjectionPoints.Length > 0);

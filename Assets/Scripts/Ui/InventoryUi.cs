@@ -1,65 +1,119 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
+using System.Collections.Generic;
 using UnityEngine.Networking;
 
 public class InventoryUi : NetworkBehaviour {
-	public GameObject UiContainerPrefab;
-	public Button ButtonPrefab;
+	public GameObject HudboxPrefab;
 
 	Inventory inventory;
-
-	GameObject uiContainer;
-
 	PlayerState playerState;
+	GameObject uiContainer;
+	ItemFactory itemFactory;
+
+	int selectionIndex;
+	List<GameObject> instantiatedHudBoxes = new List<GameObject>();
 
 	void Start () {
 		if (!hasAuthority) {
 			return;
 		}
+
 		inventory = GetComponent<Inventory>();
 		Debug.Assert(inventory != null);
-		Debug.Assert(UiContainerPrefab != null);
-		Debug.Assert(ButtonPrefab != null);
+		inventory.AddMutationCallback(rebuildInventory);
 
-		playerState = GameObject.FindGameObjectWithTag("PlayerState").GetComponent<PlayerState>();
-		Debug.Assert(playerState != null);
+		GameObject playerStateObject = GameObject.FindGameObjectWithTag("PlayerState");
+		Debug.Assert(playerStateObject != null);
+		playerState = PlayerState.Instance();
 
-		uiContainer = Instantiate(UiContainerPrefab);
-		uiContainer.SetActive(false);
+		uiContainer = GameObject.FindGameObjectWithTag("HUD");
+		Debug.Assert(uiContainer != null);
+
+		itemFactory = ItemFactory.Instance();
+		Debug.Assert(itemFactory != null);
 
 		rebuildInventory();
 	}
 
 	void rebuildInventory () {
-		Canvas canvas = uiContainer.GetComponentInChildren<Canvas>();
-		for (int i = 0; i < canvas.transform.childCount; i++) {
-			Destroy(canvas.transform.GetChild(i).gameObject);
+		foreach (GameObject hudBox in instantiatedHudBoxes) {
+			Destroy(hudBox);
 		}
+		instantiatedHudBoxes.Clear();
 
 		// Foreach item in inventory...
 		int j = 0;
 		foreach (Item item in inventory.GetContents()) {
-			Button button = Instantiate(ButtonPrefab);
-			button.transform.SetParent(canvas.transform, false);
-			button.transform.position = button.transform.position + new Vector3(0f, j * -40f, 0f);
+			GameObject hudBox = Instantiate(HudboxPrefab);
+			hudBox.transform.SetParent(uiContainer.transform, false);
+			hudBox.transform.localPosition += new Vector3(0f, j * -50f, 0f);
 
 			Item thisItem = item; // Without copying this, every button will get the same argument: the item of the last iteration
-			button.onClick.AddListener(() => onItemSelected(thisItem));
 
-			Text label = button.GetComponentInChildren<Text>();
-			label.text = item.Name;
+			HudBoxController hbc = hudBox.GetComponent<HudBoxController>();
+			Debug.Assert(hbc != null);
+			hbc.SetText(item.Name);
+			hbc.SetIcon(itemFactory.GetIcon(new ItemIdentifier(item.Name)));
+			hbc.SetAction(() => tryToUse(thisItem));
+			hbc.SetSelected(j == selectionIndex);
+
+			instantiatedHudBoxes.Add(hudBox);
 
 			j++;
 		}
+
+		// Reposition current selection in case the inventory shrunk
+		if (selectionIndex >= instantiatedHudBoxes.Count && instantiatedHudBoxes.Count > 0) {
+			selectionIndex = instantiatedHudBoxes.Count - 1;
+			enableSelectionVisual();
+		}
 	}
 
-	void onItemSelected (Item item) {
+	void scrollUp () {
+		if (instantiatedHudBoxes.Count == 0) {
+			return;
+		}
+		disableSelectionVisual();
+		selectionIndex--;
+		if (selectionIndex < 0) {
+			selectionIndex += instantiatedHudBoxes.Count;
+		}
+		enableSelectionVisual();
+	}
+
+	void scrollDown () {
+		if (instantiatedHudBoxes.Count == 0) {
+			return;
+		}
+		disableSelectionVisual();
+		selectionIndex = (selectionIndex + 1) % instantiatedHudBoxes.Count;
+		enableSelectionVisual();
+	}
+
+	void disableSelectionVisual () {
+		getCurrentHudBoxController().SetSelected(false);
+	}
+
+	void enableSelectionVisual () {
+		getCurrentHudBoxController().SetSelected(true);
+	}
+
+	HudBoxController getCurrentHudBoxController () {
+		GameObject hudBox = instantiatedHudBoxes[selectionIndex];
+		return hudBox.GetComponent<HudBoxController>();
+	}
+
+	void activateSelectedItem () {
+		if (instantiatedHudBoxes.Count == 0) {
+			return;
+		}
+		getCurrentHudBoxController().Activate();
+	}
+
+	void tryToUse (Item item) {
 		if (item.CanUse(gameObject)) {
 			item.Use(gameObject);
 			inventory.Remove(item);
-			closeInventory();
-		} else {
-			Debug.Log("Selected item " + item.Name + " but cannot currently use.");
 		}
 	}
 
@@ -67,27 +121,15 @@ public class InventoryUi : NetworkBehaviour {
 		if (!hasAuthority) {
 			return;
 		}
-		if (Input.GetButtonDown("Inventory")) {
-			toggleInventory();
+
+		if (Input.GetButtonDown("Select Item") && playerState.CanActivateInventoryItem) {
+			activateSelectedItem();
 		}
-	}
 
-	void toggleInventory () {
-		if (uiContainer.activeSelf) {
-			closeInventory();
-		} else {
-			openInventory();
+		if (Input.GetAxis("List Scroll") < -0.5 && playerState.CanScrollInventory) {
+			scrollDown();
+		} else if (Input.GetAxis("List Scroll") > 0.5 && playerState.CanScrollInventory) {
+			scrollUp();
 		}
-	}
-
-	void openInventory () {
-		rebuildInventory();
-		playerState.IsInInventory = true;
-		uiContainer.SetActive(true);
-	}
-
-	void closeInventory () {
-		uiContainer.SetActive(false);
-		playerState.IsInInventory = false;
 	}
 }

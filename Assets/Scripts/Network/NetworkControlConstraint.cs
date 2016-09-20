@@ -6,6 +6,12 @@ public class NetworkControlConstraint : NetworkBehaviour {
 	public GameObject LocalModel;
 	public GameObject RemoteModel;
 
+	PlayerState playerState;
+
+	void Awake () {
+		playerState = PlayerState.Instance();
+	}
+
 	void Start () {
 		Debug.Assert(LocalModel != null);
 		Debug.Assert(RemoteModel != null);
@@ -24,8 +30,11 @@ public class NetworkControlConstraint : NetworkBehaviour {
 	override public void OnStartAuthority () {
 		GetComponent<FirstPersonController>().enabled = true;
 		GetComponent<AttachCamera>().enabled = true;
-		GetComponent<InventoryUi>().enabled = true;
 		GetComponent<Shoot>().enabled = true;
+
+		if (!playerState.IsInLobby) {
+			GetComponent<InventoryUi>().enabled = true;
+		}
 
 		LocalModel.SetActive(true);
 		RemoteModel.SetActive(false);

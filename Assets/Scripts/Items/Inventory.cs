@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections.Generic;
+using System;
 
 public class Inventory : NetworkBehaviour {
 	// http://forum.unity3d.com/threads/syncvar-vs-clientrpc-for-syncing-arrays-and-structs.350203/
@@ -9,6 +10,8 @@ public class Inventory : NetworkBehaviour {
 	public ItemCollection Contents = new ItemCollection();
 
 	public int Capacity = int.MaxValue;
+
+	List<Action> mutationCallbacks = new List<Action>();
 
 	public bool HasSpace (int delta = 1) {
 		return Capacity >= Contents.Count + delta;
@@ -20,11 +23,14 @@ public class Inventory : NetworkBehaviour {
 			return;
 		}
 		Contents.Add(new ItemIdentifier(item.Name));
+		sendMutationCallbacks();
 	}
 
 	public void Remove (Item item) {
 		if (!Contents.Remove(new ItemIdentifier(item.Name))) {
 			Debug.LogError("Failed to remove item from inventory");
+		} else {
+			sendMutationCallbacks();
 		}
 	}
 
@@ -32,6 +38,7 @@ public class Inventory : NetworkBehaviour {
 		for (int i = 0; i < count; i++) {
 			Take(itemIdentifier);
 		}
+		sendMutationCallbacks();
 	}
 
 	public Item Take (ItemIdentifier itemIdentifier) {
@@ -72,5 +79,22 @@ public class Inventory : NetworkBehaviour {
 			result.Add(item);
 		}
 		return result;
+	}
+
+	public void AddMutationCallback (Action callback) {
+		mutationCallbacks.Add(callback);
+	}
+
+	void sendMutationCallbacks () {
+		if (NetworkServer.active) {
+			RpcSendMutationCallbacks();
+		}
+	}
+
+	[ClientRpc]
+	void RpcSendMutationCallbacks () {
+		foreach (Action callback in mutationCallbacks) {
+			callback.Invoke();
+		}
 	}
 }

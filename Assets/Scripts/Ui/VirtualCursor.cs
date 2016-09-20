@@ -16,7 +16,7 @@ public class VirtualCursor : MonoBehaviour {
 			Debug.LogError("The canvas must have a BoxCollider to receive Physics Events");
 		}
 
-		playerState = GameObject.FindGameObjectWithTag("PlayerState").GetComponent<PlayerState>();
+		playerState = PlayerState.Instance();
 	}
 
 	void Update () {

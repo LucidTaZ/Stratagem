@@ -9,6 +9,13 @@ public class ItemFactory : MonoBehaviour {
 
 	public GameObject LootTemplate;
 
+	public Sprite ZenyIcon;
+	public Sprite WorkerSpawnerIcon;
+	public Sprite DefenderSpawnerIcon;
+	public Sprite OffenderSpawnerIcon;
+	public Sprite SiegerSpawnerIcon;
+	public Sprite DefenseTowerIcon;
+
 	public static ItemFactory Instance () {
 		GameObject itemFactoryHolder = GameObject.FindGameObjectWithTag("ItemFactory");
 		Debug.Assert(itemFactoryHolder != null);
@@ -53,6 +60,19 @@ public class ItemFactory : MonoBehaviour {
 			Debug.LogWarning("Unknown item ID: " + itemId.Name);
 			return item;
 		}
+	}
+
+	public Sprite GetIcon (ItemIdentifier itemId) {
+		switch (itemId.Name) {
+		case "Zeny": return ZenyIcon;
+		case "Worker Spawner": return WorkerSpawnerIcon;
+		case "Defender Spawner": return DefenderSpawnerIcon;
+		case "Offender Spawner": return OffenderSpawnerIcon;
+		case "Sieger Spawner": return SiegerSpawnerIcon;
+		case "Defense Tower": return DefenseTowerIcon;
+		}
+		Debug.LogError("Icon not found for " + itemId.Name);
+		return ZenyIcon;
 	}
 
 	public GameObject CreateLootable (ItemIdentifier itemId) {

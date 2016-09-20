@@ -5,11 +5,7 @@ public class PlayerState : MonoBehaviour {
 	public bool IsInOverlayMenu;
 	public bool IsInVirtualConsole;
 	public bool IsInVirtualConsoleThisTick; // Flag to signal being in a virtual console, so this is a set-only property that reverts back if no one calls it (Reason to have it is to prevent conflicts with multiple consoles)
-
-	public bool IsInInventory {
-		get { return IsInOverlayMenu; }
-		set { IsInOverlayMenu = value; }
-	}
+	public bool IsInLobby;
 
 	public bool CanMouselook {
 		get { return !IsInOverlayMenu; }
@@ -25,6 +21,14 @@ public class PlayerState : MonoBehaviour {
 
 	public bool IsPlacingStructure {
 		get { return placeStructure != null && placeStructure.IsPlacing; }
+	}
+
+	public bool CanActivateInventoryItem {
+		get { return !IsPlacingStructure && !IsInOverlayMenu; }
+	}
+
+	public bool CanScrollInventory {
+		get { return !IsPlacingStructure; }
 	}
 
 	// Used to display unit names, threat ranges, etc.
@@ -78,5 +82,11 @@ public class PlayerState : MonoBehaviour {
 			Behaviour fpc = player.GetComponent<FirstPersonController>();
 			fpc.enabled = true;
 		}
+	}
+
+	public static PlayerState Instance () {
+		PlayerState instance = GameObject.FindGameObjectWithTag("PlayerState").GetComponent<PlayerState>();
+		Debug.Assert(instance != null);
+		return instance;
 	}
 }

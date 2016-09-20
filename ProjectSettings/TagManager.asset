@@ -11,6 +11,7 @@ TagManager:
   - ItemFactory
   - PlayerState
   - Heart
+  - HUD
   layers:
   - Default
   - TransparentFX

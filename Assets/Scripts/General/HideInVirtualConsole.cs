@@ -8,7 +8,7 @@ public class HideInVirtualConsole : MonoBehaviour {
 
 	void Awake () {
 		renderers = GetComponentsInChildren<Renderer>();
-		playerState = GameObject.FindGameObjectWithTag("PlayerState").GetComponent<PlayerState>();
+		playerState = PlayerState.Instance();
 	}
 
 	void Start () {

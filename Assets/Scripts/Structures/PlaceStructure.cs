@@ -28,8 +28,7 @@ public class PlaceStructure : NetworkBehaviour {
 		btt = GetComponent<BelongsToTeam>();
 		Debug.Assert(btt != null);
 
-		playerState = GameObject.FindGameObjectWithTag("PlayerState").GetComponent<PlayerState>();
-		Debug.Assert(playerState != null);
+		playerState = PlayerState.Instance();
 
 		BlueprintMaterial = Resources.Load<Material>("BlueprintMaterial"); // So we don't have to assign it all the time upon instantiation, but can still leverage the editor to design the material
 		BuildSound = Resources.Load<AudioClip>("BuildSound");
@@ -50,7 +49,7 @@ public class PlaceStructure : NetworkBehaviour {
 		Vector3 position;
 		Quaternion rotation;
 		if (hasAuthority && playerState.CanPlaceStructures && canBuild(out position, out rotation)) {
-			if (Input.GetButton("Build")) {
+			if (Input.GetButtonDown("Build")) {
 				CmdBuildStructure(Subject.GetComponent<NetworkIdentity>().assetId, position, rotation);
 				playSound();
 				disableSelf();

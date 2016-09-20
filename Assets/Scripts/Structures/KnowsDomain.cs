@@ -19,7 +19,7 @@ public class KnowsDomain : MonoBehaviour {
 		Debug.Assert(btt != null);
 		Domain.FriendlyTeam = btt.team;
 
-		playerState = GameObject.FindGameObjectWithTag("PlayerState").GetComponent<PlayerState>();
+		playerState = PlayerState.Instance();
 		initializeRangeIndicator(RangeIndicator);
 	}
 
