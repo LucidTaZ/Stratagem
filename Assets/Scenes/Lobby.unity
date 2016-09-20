@@ -643,11 +643,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22433864, guid: 7b9124ae28979cc499743a6a45ada786, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 22451622, guid: 7b9124ae28979cc499743a6a45ada786, type: 2}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 11464670, guid: 7b9124ae28979cc499743a6a45ada786, type: 2}
       propertyPath: m_MinValue

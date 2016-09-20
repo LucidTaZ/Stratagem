@@ -89,9 +89,7 @@ public class PlaceStructure : NetworkBehaviour {
 	[Command]
 	public void CmdBuildStructure (NetworkHash128 subjectId, Vector3 position, Quaternion rotation) {
 		GameObject subject = ClientScene.prefabs[subjectId];
-		GameObject structure = Instantiate(subject);
-		structure.transform.position = position;
-		structure.transform.rotation = rotation;
+		GameObject structure = (GameObject)Instantiate(subject, position, rotation);
 
 		BelongsToTeam childBtt = structure.GetComponent<BelongsToTeam>();
 		Debug.Assert(btt != null);
