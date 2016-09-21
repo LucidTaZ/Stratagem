@@ -43,17 +43,21 @@ public class InventoryUi : NetworkBehaviour {
 
 		// Foreach item in inventory...
 		int j = 0;
-		foreach (Item item in inventory.GetContents()) {
+		foreach (Item.Stack stack in inventory.GetStackedContents()) {
 			GameObject hudBox = Instantiate(HudboxPrefab);
 			hudBox.transform.SetParent(uiContainer.transform, false);
 			hudBox.transform.localPosition += new Vector3(0f, j * -50f, 0f);
 
-			Item thisItem = item; // Without copying this, every button will get the same argument: the item of the last iteration
+			Item thisItem = stack.ContainedItem; // Without copying this, every button will get the same argument: the item of the last iteration
 
 			HudBoxController hbc = hudBox.GetComponent<HudBoxController>();
 			Debug.Assert(hbc != null);
-			hbc.SetText(item.Name);
-			hbc.SetIcon(itemFactory.GetIcon(new ItemIdentifier(item.Name)));
+			if (stack.Count > 1) {
+				hbc.SetText(stack.ContainedItem.Name + " x" + stack.Count);
+			} else {
+				hbc.SetText(stack.ContainedItem.Name);
+			}
+			hbc.SetIcon(itemFactory.GetIcon(new ItemIdentifier(stack.ContainedItem.Name)));
 			hbc.SetAction(() => tryToUse(thisItem));
 			hbc.SetSelected(j == selectionIndex);
 

@@ -2,6 +2,11 @@
 
 [System.Serializable]
 public class Item {
+	public class Stack {
+		public Item ContainedItem;
+		public int Count;
+	}
+
 	public string Name;
 
 	public GameObject GroundItem;

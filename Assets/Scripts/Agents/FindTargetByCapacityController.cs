@@ -23,7 +23,7 @@ public class FindTargetByCapacityController : MonoBehaviour {
 			findTarget.TargetingMode = FindTarget.Mode.NONE;
 			findTarget.ForceForgetTarget();
 		}
-		if (inventory.Contents.Count == 0) {
+		if (inventory.IsEmpty()) {
 			findTarget.TargetingMode = originalTargetingMode;
 		}
 	}
