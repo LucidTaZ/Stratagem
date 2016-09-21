@@ -9,10 +9,14 @@ public class StructurePurchaseConsole : NetworkBehaviour {
 
 	public PurchaseHandler Handler;
 
+	AudioSource audioSource;
+
 	void Start () {
 		Debug.Assert(ButtonPrefab != null);
 		Debug.Assert(canvas != null);
 		Debug.Assert(Handler != null);
+
+		audioSource = GetComponent<AudioSource>();
 
 		buildContents();
 	}
@@ -51,5 +55,9 @@ public class StructurePurchaseConsole : NetworkBehaviour {
 		PurchaseCustomer pc = player.GetComponent<PurchaseCustomer>();
 		Debug.Assert(pc != null);
 		pc.Purchase(purchaseableItem, Handler);
+
+		if (audioSource != null) {
+			audioSource.Play();
+		}
 	}
 }

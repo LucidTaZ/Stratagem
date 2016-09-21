@@ -20,6 +20,8 @@ public class PlaceStructure : NetworkBehaviour {
 	bool storedDomainVisuals;
 	GameObject domainIndicator;
 
+	AudioSource audioSource;
+
 	public bool IsPlacing {
 		get { return enabled; }
 	}
@@ -32,6 +34,11 @@ public class PlaceStructure : NetworkBehaviour {
 
 		BlueprintMaterial = Resources.Load<Material>("BlueprintMaterial"); // So we don't have to assign it all the time upon instantiation, but can still leverage the editor to design the material
 		BuildSound = Resources.Load<AudioClip>("BuildSound");
+	}
+
+	void Start () {
+		audioSource = Camera.main.GetComponent<AudioSource>();
+		Debug.Assert(audioSource != null);
 	}
 
 	void OnEnable () {
@@ -100,13 +107,8 @@ public class PlaceStructure : NetworkBehaviour {
 	}
 
 	void playSound () {
-		AudioSource audio = GetComponent<AudioSource>();
-		if (audio == null) {
-			Debug.LogWarning("No audio source found");
-		} else {
-			audio.clip = BuildSound;
-			audio.Play();
-		}
+		audioSource.clip = BuildSound;
+		audioSource.Play();
 	}
 
 	void renderBlueprint (Vector3 position, Quaternion rotation) {

@@ -10,6 +10,7 @@ public class Shoot : NetworkBehaviour {
 	public float Velocity = 50f;
 
 	public float Cooldown = 0.1f;
+	public float InitialCooldownSpread = 0.1f; // Random initial cooldown to spread shots of initial units. Makes the game sound less like a bad techno track.
 	float cooldownTimer = 0f;
 
 	public float MaxDeviationAngle = 180.0f; // Maximum angle that may be deviated from the "forward" direction. If this is set to a low number, the entity can only shoot forward, not sideways.
@@ -37,6 +38,8 @@ public class Shoot : NetworkBehaviour {
 		}
 
 		Debug.Assert(EjectionPoints.Length > 0);
+
+		cooldownTimer = Time.time + Random.Range(0f, InitialCooldownSpread);
 	}
 
 	void Update () {

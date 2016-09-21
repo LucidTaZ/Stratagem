@@ -10,6 +10,7 @@ public class Lootable : NetworkBehaviour {
 		}
 		Inventory inventory = other.GetComponent<Inventory>();
 		if (inventory != null && inventory.HasSpace()) {
+			// TODO: If other is a player, play a sound (via RPC) on that player's client
 			PerformLoot(inventory);
 		}
 	}
