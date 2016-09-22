@@ -10,9 +10,10 @@ public class CountItems : MonoBehaviour {
 	string format;
 
 	void Start () {
-		textField = GetComponent<Text>();
+		textField = GetComponentInChildren<Text>();
 		Debug.Assert(textField != null);
 		format = textField.text;
+		textField.text = "";
 	}
 
 	void Update () {
