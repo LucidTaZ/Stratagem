@@ -4,6 +4,7 @@ using UnityEngine.Networking;
 
 public class InventoryUi : NetworkBehaviour {
 	public GameObject HudboxPrefab;
+	public AudioSource ScrollSound;
 
 	Inventory inventory;
 	PlayerState playerState;
@@ -17,6 +18,8 @@ public class InventoryUi : NetworkBehaviour {
 		if (!hasAuthority) {
 			return;
 		}
+
+		Debug.Assert(ScrollSound != null);
 
 		inventory = GetComponent<Inventory>();
 		Debug.Assert(inventory != null);
@@ -53,7 +56,7 @@ public class InventoryUi : NetworkBehaviour {
 			HudBoxController hbc = hudBox.GetComponent<HudBoxController>();
 			Debug.Assert(hbc != null);
 			if (stack.Count > 1) {
-				hbc.SetText(stack.ContainedItem.Name + " x" + stack.Count);
+				hbc.SetText(string.Format("{0} ({1})", stack.ContainedItem.Name, stack.Count));
 			} else {
 				hbc.SetText(stack.ContainedItem.Name);
 			}
@@ -74,7 +77,7 @@ public class InventoryUi : NetworkBehaviour {
 	}
 
 	void scrollUp () {
-		if (instantiatedHudBoxes.Count == 0) {
+		if (instantiatedHudBoxes.Count <= 1) {
 			return;
 		}
 		disableSelectionVisual();
@@ -83,15 +86,17 @@ public class InventoryUi : NetworkBehaviour {
 			selectionIndex += instantiatedHudBoxes.Count;
 		}
 		enableSelectionVisual();
+		playScrollSound();
 	}
 
 	void scrollDown () {
-		if (instantiatedHudBoxes.Count == 0) {
+		if (instantiatedHudBoxes.Count <= 1) {
 			return;
 		}
 		disableSelectionVisual();
 		selectionIndex = (selectionIndex + 1) % instantiatedHudBoxes.Count;
 		enableSelectionVisual();
+		playScrollSound();
 	}
 
 	void disableSelectionVisual () {
@@ -100,6 +105,10 @@ public class InventoryUi : NetworkBehaviour {
 
 	void enableSelectionVisual () {
 		getCurrentHudBoxController().SetSelected(true);
+	}
+
+	void playScrollSound () {
+		ScrollSound.Play();
 	}
 
 	HudBoxController getCurrentHudBoxController () {

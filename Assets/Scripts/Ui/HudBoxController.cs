@@ -3,8 +3,7 @@ using UnityEngine.UI;
 using System;
 
 public class HudBoxController : MonoBehaviour {
-	public Sprite BoxSprite;
-	public Sprite BoxSelectedSprite;
+	public GameObject SelectionIndicator;
 
 	public Image IconImage;
 	public Text LabelText;
@@ -16,12 +15,13 @@ public class HudBoxController : MonoBehaviour {
 		boxImage = GetComponent<Image>();
 		Debug.Assert(boxImage != null);
 
+		Debug.Assert(SelectionIndicator != null);
 		Debug.Assert(IconImage != null);
 		Debug.Assert(LabelText != null);
 	}
 
 	public void SetSelected (bool selected) {
-		boxImage.sprite = selected ? BoxSelectedSprite : BoxSprite;
+		SelectionIndicator.SetActive(selected);
 	}
 
 	public void SetIcon (Sprite icon) {
@@ -38,15 +38,5 @@ public class HudBoxController : MonoBehaviour {
 
 	public void Activate () {
 		actionOnActivation.Invoke();
-	}
-
-	// For testing:
-	bool selected = true;
-	void Update () {
-		if (Input.GetKeyDown(KeyCode.Q)) {
-			SetSelected(selected = !selected);
-			SetIcon(ItemFactory.Instance().GetIcon(new ItemIdentifier("Worker Spawner")));
-			SetText("Worker Spawner");
-		}
 	}
 }

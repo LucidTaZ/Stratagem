@@ -7,8 +7,9 @@ public class PlaceStructure : NetworkBehaviour {
 
 	public GameObject Subject;
 
+	public AudioSource BuildSound;
+
 	Material BlueprintMaterial;
-	AudioClip BuildSound;
 
 	BelongsToTeam btt;
 
@@ -20,8 +21,6 @@ public class PlaceStructure : NetworkBehaviour {
 	bool storedDomainVisuals;
 	GameObject domainIndicator;
 
-	AudioSource audioSource;
-
 	public bool IsPlacing {
 		get { return enabled; }
 	}
@@ -30,15 +29,11 @@ public class PlaceStructure : NetworkBehaviour {
 		btt = GetComponent<BelongsToTeam>();
 		Debug.Assert(btt != null);
 
+		Debug.Assert(BuildSound != null);
+
 		playerState = PlayerState.Instance();
 
 		BlueprintMaterial = Resources.Load<Material>("BlueprintMaterial"); // So we don't have to assign it all the time upon instantiation, but can still leverage the editor to design the material
-		BuildSound = Resources.Load<AudioClip>("BuildSound");
-	}
-
-	void Start () {
-		audioSource = Camera.main.GetComponent<AudioSource>();
-		Debug.Assert(audioSource != null);
 	}
 
 	void OnEnable () {
@@ -107,8 +102,7 @@ public class PlaceStructure : NetworkBehaviour {
 	}
 
 	void playSound () {
-		audioSource.clip = BuildSound;
-		audioSource.Play();
+		BuildSound.Play();
 	}
 
 	void renderBlueprint (Vector3 position, Quaternion rotation) {
