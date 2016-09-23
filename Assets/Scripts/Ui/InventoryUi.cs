@@ -49,7 +49,7 @@ public class InventoryUi : NetworkBehaviour {
 		foreach (Item.Stack stack in inventory.GetStackedContents()) {
 			GameObject hudBox = Instantiate(HudboxPrefab);
 			hudBox.transform.SetParent(uiContainer.transform, false);
-			hudBox.transform.localPosition += new Vector3(0f, j * -50f, 0f);
+			hudBox.transform.localPosition += new Vector3(0f, j * 50f, 0f);
 
 			Item thisItem = stack.ContainedItem; // Without copying this, every button will get the same argument: the item of the last iteration
 
@@ -76,7 +76,7 @@ public class InventoryUi : NetworkBehaviour {
 		}
 	}
 
-	void scrollUp () {
+	void scrollIndexDown () {
 		if (instantiatedHudBoxes.Count <= 1) {
 			return;
 		}
@@ -89,7 +89,7 @@ public class InventoryUi : NetworkBehaviour {
 		playScrollSound();
 	}
 
-	void scrollDown () {
+	void scrollIndexUp () {
 		if (instantiatedHudBoxes.Count <= 1) {
 			return;
 		}
@@ -140,9 +140,9 @@ public class InventoryUi : NetworkBehaviour {
 		}
 
 		if (Input.GetAxis("List Scroll") < -0.5 && playerState.CanScrollInventory) {
-			scrollDown();
+			scrollIndexDown();
 		} else if (Input.GetAxis("List Scroll") > 0.5 && playerState.CanScrollInventory) {
-			scrollUp();
+			scrollIndexUp();
 		}
 	}
 }
